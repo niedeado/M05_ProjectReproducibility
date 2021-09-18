@@ -44,8 +44,8 @@ def hyperparam_tuning(X_train, y_train, pickle_dump=False):
                     cv_scores = []
                     for train_index_cv, test_index_cv in sss.split(X_train, y_train):
                         
-                        X_train_cv, X_test_cv = X[train_index_cv], X[test_index_cv]
-                        y_train_cv, y_test_cv = y[train_index_cv], y[test_index_cv]
+                        X_train_cv, X_test_cv = X_train[train_index_cv], X_train[test_index_cv]
+                        y_train_cv, y_test_cv = y_train[train_index_cv], y_train[test_index_cv]
                         
                         rf_clf = RandomForestClassifier(**params,
                                                         random_state=SEED)
