@@ -2,6 +2,7 @@ import time
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedShuffleSplit
+import pickle
 
 N_ESTIMATORS = np.arange(50,201,50)
 CRITERIA = ["entropy"]
@@ -31,7 +32,8 @@ def hyperparam_tuning(X_train, y_train):
                 for max_feat in MAX_FEATURES:
                     
                     t = time.time()
-                    params = (n_est,crit,max_depth,max_feat)
+                    params = {"n_estimators": n_est, "criterion": crit,
+                              "max_depth": max_depth, "max_features": max_feat}
                     print(params)
                     parameters.append(params)
                     
@@ -45,10 +47,7 @@ def hyperparam_tuning(X_train, y_train):
                         X_train_cv, X_test_cv = X[train_index_cv], X[test_index_cv]
                         y_train_cv, y_test_cv = y[train_index_cv], y[test_index_cv]
                         
-                        rf_clf = RandomForestClassifier(n_estimators=n_est,
-                                                        criterion=crit,
-                                                        max_depth=max_depth,
-                                                        max_features=max_feat,
+                        rf_clf = RandomForestClassifier(**params,
                                                         random_state=SEED)
                         
                         rf_clf.fit(X_train_cv, y_train_cv)
@@ -56,4 +55,5 @@ def hyperparam_tuning(X_train, y_train):
                     
                     print("Val score:", np.mean(cv_scores))
                     validation_accs.append(np.mean(cv_scores))
-                    print("Computation time:", time.time()-t)   
+                    print("Computation time:", time.time()-t)
+    
