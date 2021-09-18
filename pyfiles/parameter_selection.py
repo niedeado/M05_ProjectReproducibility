@@ -58,3 +58,5 @@ def hyperparam_tuning(X_train, y_train):
                     print("Computation time:", time.time()-t)
                     print("----------------------------------------")
     
+    best_params = parameters[np.argmax(validation_accs)]
+    return best_params
