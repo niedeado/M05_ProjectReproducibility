@@ -56,4 +56,5 @@ def hyperparam_tuning(X_train, y_train):
                     print("Val score:", np.mean(cv_scores))
                     validation_accs.append(np.mean(cv_scores))
                     print("Computation time:", time.time()-t)
+                    print("----------------------------------------")
     
