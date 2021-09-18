@@ -13,7 +13,7 @@ N_SPLITS = 5
 VAL_SIZE = 0.1
 SEED = 0
 
-def hyperparam_tuning(X_train, y_train):
+def hyperparam_tuning(X_train, y_train, pickle_dump=False):
 
     print("----------------------------------------")
     print("HYPERPARAMETER TUNING:")
@@ -59,4 +59,6 @@ def hyperparam_tuning(X_train, y_train):
                     print("----------------------------------------")
     
     best_params = parameters[np.argmax(validation_accs)]
+    if pickle_dump:
+        pickle.dump(best_params, open("../hyperparameters.pkl", "wb"))
     return best_params
