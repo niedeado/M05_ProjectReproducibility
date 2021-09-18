@@ -15,3 +15,22 @@ def load():
     dataset.columns = ["species"] + \
                       ["shape_"+str(i) for i in range(dataset.shape[1]-1)]
     return dataset
+
+def extract_data_array(dataset):
+    
+    labels_str = set(dataset.species)
+    labels_map = dict(zip(labels_str, set(range(len(labels_str)))))
+    labels_inv_map = {num: name for name, num in labels_map.items()}
+    
+    X = dataset.drop("species",axis=1).to_numpy()
+    y = np.array([labels_map[i] for i in dataset.species])
+    
+    return X, y, labels_inv_map
+
+def split_data(X, y, test_size=TEST_SIZE, random_state=SEED):
+    
+    X_train, X_test, y_train, y_test = train_test_split(X, y,
+                                                      test_size=test_size,
+                                                      stratify=y,
+                                                      random_state=random_state)
+    return X_train, X_test, y_train, y_test
