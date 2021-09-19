@@ -18,8 +18,8 @@ def load():
 
 def extract_data_array(dataset):
     
-    labels_str = set(dataset.species)
-    labels_map = dict(zip(labels_str, set(range(len(labels_str)))))
+    labels_str = list(dataset.species.unique())
+    labels_map = dict(zip(labels_str, list(range(len(labels_str)))))
     labels_inv_map = {num: name for name, num in labels_map.items()}
     
     X = dataset.drop("species",axis=1).to_numpy()
