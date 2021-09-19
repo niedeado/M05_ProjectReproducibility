@@ -10,3 +10,8 @@ def get_labels_analysis(y_true, y_pred, labels_inv_map):
     labels_true = [labels_inv_map[i] for i in y_true]
     labels_predict = [labels_inv_map[i] for i in y_pred]
     return labels_true, labels_predict, labels_order
+
+def visualize_report(y_true, y_pred, labels_inv_map):
+    labels_true, labels_predict, labels_order = get_labels_analysis(y_true, y_pred, labels_inv_map)
+    print(classification_report(labels_true,labels_predict, labels =labels_order))
+    return
