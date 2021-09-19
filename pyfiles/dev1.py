@@ -41,7 +41,13 @@ def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labe
                fit_reg=False,
                hue='Species',  # color by cluster
                legend=True,
-               scatter_kws={"s": 32})
+               scatter_kws={"s": 32},
+               height=8.27, aspect=11.2 / 8.27)
+    plt.ticklabel_format(style='sci', axis='y')
+
+    plt.xlabel("PC1", size=14)
+    plt.ylabel("PC2", size=14)
+    plt.title("\nPCA Plant Species\n", size=20)
     plt.show()
 
 
@@ -76,8 +82,6 @@ def load_widgets():
             ]
         )
         )
-
-
     button_widget.on_click(run_all)
 
     # Display
