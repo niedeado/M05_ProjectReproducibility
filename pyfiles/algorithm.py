@@ -16,3 +16,5 @@ def train(X_train, y_train, hyperparameters_path=HYPERPARAM_PATH, pickle_dump=Fa
     rf_clf.fit(X_train, y_train)
     return rf_clf
 
+def predict(rf_clf, X):
+    return rf_clf.predict(X)
