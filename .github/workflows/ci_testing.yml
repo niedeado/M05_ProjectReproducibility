@@ -41,3 +41,32 @@ jobs:
           activate-environment: project
           environment-file: environment.yml
       - run: conda info
+      
+      # Default action: run something
+      - name: Run tests
+        shell: bash -l {0}
+        run: |
+          conda info -a
+          pytest -sv --cov=. test.py
+      - name: Upload coverage to coveralls.io
+        shell: bash -l {0}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_FLAG_NAME: ${{ matrix.python-version }}
+          COVERALLS_PARALLEL: true
+        run: |
+          conda info -a
+          coveralls --service=github
+          
+  coveralls:
+    name: Indicate completion to coveralls.io
+    needs: test
+    runs-on: ubuntu-latest
+    container: python:3-slim
+    steps:
+    - name: Finished
+      run: |
+        pip3 install --upgrade coveralls
+        coveralls --service=github --finish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
