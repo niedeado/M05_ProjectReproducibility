@@ -40,3 +40,4 @@ jobs:
           auto-activate-base: false
           activate-environment: project
           environment-file: environment.yml
+      - run: conda info
