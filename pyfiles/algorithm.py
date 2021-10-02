@@ -3,7 +3,7 @@ import parameter_selection
 import pickle
 
 SEED = 0
-HYPERPARAM_PATH = "../hyperparameters.pkl"
+HYPERPARAM_PATH = "./hyperparameters.pkl"
 
 def train(X_train, y_train, hyperparameters_path=HYPERPARAM_PATH, pickle_dump=False):
     try:
