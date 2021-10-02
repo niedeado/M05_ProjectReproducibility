@@ -4,6 +4,10 @@ import pandas as pd
 import numpy as np
 import ipywidgets as widgets
 import data_visualisation
+import os
+
+print('file:test getcwd:      ', os.getcwd())
+print('file:test __file__:    ', __file__)
 
 @pytest.fixture # not used yet
 def get_testdata():
