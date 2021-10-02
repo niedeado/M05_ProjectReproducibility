@@ -6,6 +6,7 @@ dependencies:
   - pandas
   - scikit-learn
   - seaborn
+  - ipywidgets
   - pytest
   - pytest-cov
   - pip
