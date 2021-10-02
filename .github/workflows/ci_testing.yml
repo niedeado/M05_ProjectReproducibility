@@ -47,7 +47,7 @@ jobs:
         shell: bash -l {0}
         run: |
           conda info -a
-          pytest -sv --cov=. test.py
+          pytest -sv --cov=. ./pyfiles/test.py
       - name: Upload coverage to coveralls.io
         shell: bash -l {0}
         env:
