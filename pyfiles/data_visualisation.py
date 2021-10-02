@@ -53,7 +53,10 @@ def plot_pca(data):
     plt.show()
 
 
-
+def run_all_below(ev):
+    display(Javascript(
+        'IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))
+    return None
 
 def load_widgets():
     """
@@ -65,8 +68,7 @@ def load_widgets():
     # Setting options
     x_widget = widgets.SelectMultiple(options=species, value=["Magnolia Heptapeta"],
                                       description="Species\n", disabled=False,
-                                      width='75%', height='100%',
-                                      rows=8,
+                                      rows=8
     )
 
                                       #layout = Layout( display="flex",flex_flow='column'))
@@ -74,13 +76,10 @@ def load_widgets():
     mean_widget = widgets.Checkbox(value=True, description='Scale by Mean')
     std_widget = widgets.Checkbox(value=True, description='Scale by Std')
 
-
-
     button_widget = widgets.Button(description='Update',
                                    disabled=False,
                                    button_style='primary',
-                                   tooltip='Update',
-                                   align_items='stretch')
+                                   tooltip='Update')
 
     """button_widget = widgets.Button(description='Update',
                                    disabled=False)
@@ -94,21 +93,8 @@ def load_widgets():
 
 
 
-    def run_all(ev):
-        display(Javascript(
-            'IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))
 
-        """display(widgets.VBox(
-            [
-                mean_widget,
-                std_widget,
-                button_widget
-            ]
-        )
-        )"""
-        return None
-
-    button_widget.on_click(run_all)
+    button_widget.on_click(run_all_below)
 
     # Display
     display(x_widget)
@@ -117,7 +103,6 @@ def load_widgets():
     display(std_widget)
     """display(widgets.VBox([x_widget,mean_widget, std_widget]))"""
     display(box)
-
 
     return x_widget, mean_widget, std_widget, button_widget
 
