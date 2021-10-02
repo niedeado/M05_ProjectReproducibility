@@ -1,0 +1,13 @@
+channels:
+  - defaults
+dependencies:
+  - numpy
+  - scipy
+  - pandas
+  - scikit-learn
+  - seaborn
+  - pytest
+  - pytest-cov
+  - pip
+  - pip:
+    - coveralls
