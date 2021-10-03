@@ -13,8 +13,8 @@ def get_labels_analysis(y_true, y_pred, labels_inv_map):
 
 def visualize_report(y_true, y_pred, labels_inv_map):
     labels_true, labels_predict, labels_order = get_labels_analysis(y_true, y_pred, labels_inv_map)
-    print(classification_report(labels_true,labels_predict, labels =labels_order))
-    return
+    return classification_report(labels_true,labels_predict, labels =labels_order)
+    
 
 def inspect_misclassified(y_true, y_pred, labels_inv_map,
                          iter_bound=ITER_BOUND, print_bound=PRINT_BOUND):
@@ -27,10 +27,11 @@ def inspect_misclassified(y_true, y_pred, labels_inv_map,
 
     print_count = 0
     i = 0
-    while (print_count < print_bound) and (i < iter_bound):
+    misclassified_msg = []
+    while (print_count < PRINT_BOUND) and (i < iter_bound) and (i < idxs_cm[0].shape[0]-1):
         i += 1
         if idxs_cm[0][i] != idxs_cm[1][i]:
             print_count += 1
-            print(f"{labels_inv_map[idxs_cm[0][i]]} was predicted as {labels_inv_map[idxs_cm[1][i]]}: {cm[idxs_cm[0][i], idxs_cm[1][i]]} times")
-            
-    return
+            misclassified_msg.append(f"{labels_inv_map[idxs_cm[0][i]]} was predicted as {labels_inv_map[idxs_cm[1][i]]}: {cm[idxs_cm[0][i], idxs_cm[1][i]]} times")
+    
+    return misclassified_msg

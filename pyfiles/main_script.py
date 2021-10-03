@@ -10,12 +10,15 @@ if __name__ == "__main__":
 
     model = algorithm.train(X_train, y_train)
     
-    y_pred_test = algorithm.predict(model, X_test)
+    y_pred_test = model.predict(X_test)
     print("Test classification report:")
-    analysis.visualize_report(y_test, y_pred_test, labels_inv_map)
+    report = analysis.visualize_report(y_test, y_pred_test, labels_inv_map)
+    print(report)
 
     print("\nMisclassification inspection:")
-    analysis.inspect_misclassified(y_test, y_pred_test, labels_inv_map)
+    misclassified_msg = analysis.inspect_misclassified(y_test, y_pred_test, labels_inv_map)
+    for msg in misclassified_msg:
+        print(msg)
 
-    print("\nTraining accuracy:", algorithm.score(model, X_train, y_train))
-    print("Test accuracy:", algorithm.score(model, X_test, y_test))
+    print("\nTraining accuracy:", model.score(X_train, y_train))
+    print("Test accuracy:", model.score(X_test, y_test))
