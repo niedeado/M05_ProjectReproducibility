@@ -18,7 +18,7 @@ def visualize_report(y_true, y_pred, labels_inv_map):
 
 def inspect_misclassified(y_true, y_pred, labels_inv_map,
                          iter_bound=ITER_BOUND, print_bound=PRINT_BOUND):
-    iter_bound = min(iter_bound, len(labels_inv_map)**2)
+    iter_bound = min(iter_bound, len(labels_inv_map)**2 - 1)
     
     labels_true, labels_predict, labels_order = get_labels_analysis(y_true, y_pred, labels_inv_map)
     
@@ -28,7 +28,7 @@ def inspect_misclassified(y_true, y_pred, labels_inv_map,
     print_count = 0
     i = 0
     misclassified_msg = []
-    while (print_count < print_bound) and (i < iter_bound) and (i < idxs_cm[0].shape[0]-1):
+    while (print_count < print_bound) and (i < iter_bound):
         i += 1
         if idxs_cm[0][i] != idxs_cm[1][i]:
             print_count += 1
