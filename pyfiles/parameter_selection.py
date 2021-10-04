@@ -12,12 +12,15 @@ N_SPLITS = 5
 VAL_SIZE = 0.1
 SEED = 0
 
+def selection_criteria(parameters, validation_accs):
+    assert len(parameters) == len(validation_accs)
+    return parameters[np.argmax(validation_accs)]
+
 def hyperparam_tuning(X_train, y_train, pickle_dump=False):
 
     print("----------------------------------------")
     print("HYPERPARAMETER TUNING:")
     print("n_estimators:", N_ESTIMATORS)
-    print("criteria", CRITERIA)
     print("max_depths:", MAX_DEPTHS)
     print("max_features:", MAX_FEATURES)
     print("----------------------------------------")
@@ -26,38 +29,39 @@ def hyperparam_tuning(X_train, y_train, pickle_dump=False):
     parameters = []
 
     for n_est in N_ESTIMATORS:
-        for crit in CRITERIA:
-            for max_depth in MAX_DEPTHS:
-                for max_feat in MAX_FEATURES:
+        for max_depth in MAX_DEPTHS:
+            for max_feat in MAX_FEATURES:
                     
-                    t = time.time()
-                    params = {"n_estimators": n_est, "criterion": crit,
-                              "max_depth": max_depth, "max_features": max_feat}
-                    print(params)
-                    parameters.append(params)
-                    
-                    sss = StratifiedShuffleSplit(n_splits=N_SPLITS,
-                                                 test_size=VAL_SIZE,
-                                                 random_state=SEED)
-                    
-                    cv_scores = []
-                    for train_index_cv, test_index_cv in sss.split(X_train, y_train):
+                t = time.time()
+                params = {"n_estimators": n_est,
+                        "max_depth": max_depth,
+                        "max_features": max_feat}
+                print(params)
+                parameters.append(params)
                         
-                        X_train_cv, X_test_cv = X_train[train_index_cv], X_train[test_index_cv]
-                        y_train_cv, y_test_cv = y_train[train_index_cv], y_train[test_index_cv]
-                        
-                        rf_clf = RandomForestClassifier(**params,
-                                                        random_state=SEED)
-                        
-                        rf_clf.fit(X_train_cv, y_train_cv)
-                        cv_scores.append(rf_clf.score(X_test_cv,y_test_cv))
+                sss = StratifiedShuffleSplit(n_splits=N_SPLITS,
+                                             test_size=VAL_SIZE,
+                                             random_state=SEED)
                     
-                    print("Val score:", np.mean(cv_scores))
-                    validation_accs.append(np.mean(cv_scores))
-                    print("Computation time:", time.time()-t)
-                    print("----------------------------------------")
+                cv_scores = []
+                for train_index_cv, test_index_cv in sss.split(X_train, y_train):
+                        
+                    X_train_cv, X_test_cv = X_train[train_index_cv], X_train[test_index_cv]
+                    y_train_cv, y_test_cv = y_train[train_index_cv], y_train[test_index_cv]
+                        
+                    rf_clf = RandomForestClassifier(**params,
+                                                    random_state=SEED)
+                        
+                    rf_clf.fit(X_train_cv, y_train_cv)
+                    cv_scores.append(rf_clf.score(X_test_cv,y_test_cv))
+                    
+                print("Val score:", np.mean(cv_scores))
+                validation_accs.append(np.mean(cv_scores))
+                print("Computation time:", time.time()-t)
+                print("----------------------------------------")
     
-    best_params = parameters[np.argmax(validation_accs)]
+    best_params = selection_criteria(parameters, validation_accs)
+
     if pickle_dump:
-        pickle.dump(best_params, open("../hyperparameters.pkl", "wb"))
+        pickle.dump(best_params, open("./hyperparameters.pkl", "wb"))
     return best_params
