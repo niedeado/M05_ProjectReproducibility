@@ -1,0 +1,11 @@
+setuptools
+numpy
+scipy
+numpy
+scipy
+pandas
+scikit-learn
+seaborn
+ipywidgets
+pytest
+pip
