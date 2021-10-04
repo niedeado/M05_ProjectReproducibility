@@ -2,8 +2,7 @@ import database
 import algorithm
 import analysis
 
-if __name__ == "__main__":
-
+def main():
     dataset = database.load()
     X, y, labels_inv_map, _ = database.extract_data_array(dataset)
     X_train, X_test, y_train, y_test = database.split_data(X,y)
@@ -22,3 +21,7 @@ if __name__ == "__main__":
 
     print("\nTraining accuracy:", model.score(X_train, y_train))
     print("Test accuracy:", model.score(X_test, y_test))
+    
+
+if __name__ == "__main__":
+    main()
