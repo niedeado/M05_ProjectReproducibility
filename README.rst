@@ -7,4 +7,4 @@
 
 To install the package:
 
-:bash: pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@clean_visual
+:bash: `pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@clean_visual`
