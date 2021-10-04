@@ -4,10 +4,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import StratifiedShuffleSplit
 import pickle
 
-N_ESTIMATORS = np.arange(50,201,50)
-CRITERIA = ["entropy"]
-MAX_DEPTHS = [None] + list(range(9,31,7))
-MAX_FEATURES = ["auto", "sqrt", "log2"]
+N_ESTIMATORS = [50, 100, 200]
+MAX_DEPTHS = [None, 10, 20]
+MAX_FEATURES = ["sqrt", "log2"]
 
 N_SPLITS = 5
 VAL_SIZE = 0.1
