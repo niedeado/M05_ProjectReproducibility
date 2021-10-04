@@ -1,6 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
 import parameter_selection
-import pickle
 
 SEED = 0
 HYPERPARAMS = {'n_estimators': 200,
