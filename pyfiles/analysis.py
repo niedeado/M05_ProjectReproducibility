@@ -28,7 +28,7 @@ def inspect_misclassified(y_true, y_pred, labels_inv_map,
     print_count = 0
     i = 0
     misclassified_msg = []
-    while (print_count < PRINT_BOUND) and (i < iter_bound) and (i < idxs_cm[0].shape[0]-1):
+    while (print_count < print_bound) and (i < iter_bound) and (i < idxs_cm[0].shape[0]-1):
         i += 1
         if idxs_cm[0][i] != idxs_cm[1][i]:
             print_count += 1
