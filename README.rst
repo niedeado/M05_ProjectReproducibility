@@ -6,4 +6,4 @@
 
 To install the package:
 
-::pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@clean_visual
+:: pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@clean_visual
