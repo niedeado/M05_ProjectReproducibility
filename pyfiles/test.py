@@ -6,7 +6,6 @@ import ipywidgets as widgets
 import data_visualisation
 import string
 
-
 def test_load_widgets():
     x_widget, mean_widget, std_widget, button_widget = data_visualisation.load_widgets()
     assert isinstance(x_widget, widgets.widget_selection.SelectMultiple)
