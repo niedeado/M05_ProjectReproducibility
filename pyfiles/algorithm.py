@@ -3,7 +3,7 @@ import parameter_selection
 
 SEED = 0
 HYPERPARAMS = {'n_estimators': 200,
-               'max_depth': 20,
+               'max_depth': None,
                'max_features': 'log2'}
 
 def train(X_train, y_train, hyperparameters=HYPERPARAMS, pickle_dump=False):
