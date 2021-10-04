@@ -5,7 +5,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import decomposition
 import matplotlib.pyplot as plt
 import seaborn as sns
-from IPython.display import display, Javascript
+import IPython.display as Idp
+from IPython.display import Javascript
 import ipywidgets as widgets
 from ipywidgets import interact, interactive, fixed, interact_manual, Layout
 
@@ -21,7 +22,7 @@ X_train, X_test, y_train, y_test = split_data(X,y)
 
 
 def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labels_map, labels_inv_map=labels_inv_map):
-    ss = StandardScaler(with_mean=mean_widget, with_std=std_widget)
+    ss = StandardScaler(with_mean=mean_widget.value, with_std=std_widget.value)
     train_data = ss.fit_transform(X_train)
 
     pca = decomposition.PCA(n_components=4)
@@ -52,9 +53,31 @@ def plot_pca(data):
     plt.title("\nPCA Plant Species\n", size=20)
     plt.show()
 
+def plot_pca_variance(data):
+    n_comp = 20
+    pca = decomposition.PCA(n_components=19)
+    pca.fit_transform(data)
+    var_exp = pca.explained_variance_ratio_
+    cum_var_exp = np.cumsum(var_exp)
+    scale = 0.8
+    plt.figure(figsize=(11.2*scale, 6.3*scale ))
+    plt.bar(range(1, n_comp), var_exp, alpha=0.75, align='center',
+            label='Individual explanatory variance')
+    plt.step(range(1,  n_comp ), cum_var_exp, where='mid',
+             label='Cumulative explanatory variance',
+             color=(0.867, 0.52, 0.32))
+    plt.ylim(0, 1.1)
+    plt.xlabel('Principal components')
+    plt.ylabel('Amount of explanatory variance')
+    plt.title("\nExplanatory variance of the principal components from the features\n", size=14)
+    plt.legend(loc='upper right', bbox_to_anchor=(1, 0.85))
+    plt.xticks(list(range(1, n_comp , 2)))
+    plt.yticks([i * 0.1 for i in range(0, int((n_comp/2)+1))])
+    plt.show()
+
 
 def run_all_below(ev):
-    display(Javascript(
+    Idp.display(Javascript(
         'IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))
     return None
 
@@ -97,12 +120,12 @@ def load_widgets():
     button_widget.on_click(run_all_below)
 
     # Display
-    display(x_widget)
+    Idp.display(x_widget)
 
-    display(mean_widget)
-    display(std_widget)
+    Idp.display(mean_widget)
+    Idp.display(std_widget)
     """display(widgets.VBox([x_widget,mean_widget, std_widget]))"""
-    display(box)
+    Idp.display(box)
 
     return x_widget, mean_widget, std_widget, button_widget
 
