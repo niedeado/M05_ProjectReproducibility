@@ -24,6 +24,24 @@ Data Source
 The dataset used for the current project can be retrieved at the following link:
 https://archive.ics.uci.edu/ml/datasets/One-hundred+plant+species+leaves+data+set
 
+
+------------
+Installation
+------------
+
+The Project and the corresponding model can be installed by pip as mentioned below. 
+Please run after the installation the provided test, to ensure everything is set up 
+correclty. 
+
+.. code-block:: rst
+   
+   $ pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@main
+   
+   $ leaf_cc-run_test
+   
+   $ leaf_cc-run_model
+
+
 ----------
 References
 ----------
