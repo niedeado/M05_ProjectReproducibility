@@ -87,8 +87,8 @@ examples:
         print("Test accuracy:", model.score(X_test, y_test))
 
 def main_test():
-    pytest.main(["-x", "/test.py", "-vv"])
-    pytest.main(["-x", "/test_modeling.py", "-vv"])
+    pytest.main(["-x", "./test.py", "-vv"])
+    pytest.main(["-x", "./test_modeling.py", "-vv"])
 
 if __name__ == "__main__":
     main()
