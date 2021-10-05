@@ -18,7 +18,7 @@ def load():
     try:
         dataset = pd.read_csv(os.path.join(DATA_DIR, DATA_TXT), header=None)
     except FileNotFoundError:
-        DATAFILE = pkg_resources.resource_filename(__name__, "data_Sha_64.txt")
+        DATAFILE = pkg_resources.resource_filename(__name__, "data/data_Sha_64.txt")
         dataset = pd.read_csv(DATAFILE, header=None)
 
     dataset.columns = ["species"] + \
