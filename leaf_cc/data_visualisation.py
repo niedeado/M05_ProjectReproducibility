@@ -1,6 +1,8 @@
 import sys
 sys.path.append('./M05_ProjectReproducibility/pyfiles')
-from database import *
+import numpy as np
+import pandas as pd
+from . import database
 from sklearn.preprocessing import StandardScaler
 from sklearn import decomposition
 import matplotlib.pyplot as plt
@@ -14,11 +16,11 @@ from ipywidgets import interact, interactive, fixed, interact_manual, Layout
 #print(sys.argv[0])
 #print(os.path.dirname(os.path.realpath('__file__')))
 
-dataset = load()
+dataset = database.load()
 
-X, y, labels_inv_map, labels_map = extract_data_array(dataset)
+X, y, labels_inv_map, labels_map = database.extract_data_array(dataset)
 
-X_train, X_test, y_train, y_test = split_data(X,y)
+X_train, X_test, y_train, y_test = database.split_data(X,y)
 
 
 def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labels_map, labels_inv_map=labels_inv_map):
