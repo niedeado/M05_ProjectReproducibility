@@ -41,6 +41,7 @@ def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labe
     return pc_df
 
 def plot_pca(data):
+    fig = plt.figure()
     sns.lmplot(x="PC1", y="PC2",
                data=data,
                fit_reg=False,
@@ -53,7 +54,8 @@ def plot_pca(data):
     plt.xlabel("PC1", size=14)
     plt.ylabel("PC2", size=14)
     plt.title("\nPCA Plant Species\n", size=20)
-    plt.show()
+    #plt.show()
+    return fig
 
 def plot_pca_variance(data):
     n_comp = 20
@@ -75,7 +77,7 @@ def plot_pca_variance(data):
     plt.legend(loc='upper right', bbox_to_anchor=(1, 0.85))
     plt.xticks(list(range(1, n_comp , 2)))
     plt.yticks([i * 0.1 for i in range(0, int((n_comp/2)+1))])
-    plt.show()
+    #plt.show()
     return fig
 
 
