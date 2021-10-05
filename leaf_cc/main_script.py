@@ -1,6 +1,6 @@
-import database
-import algorithm
-import analysis
+from . import database
+from . import algorithm
+from . import analysis
 
 if __name__ == "__main__":
 
