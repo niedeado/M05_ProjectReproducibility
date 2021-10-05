@@ -41,8 +41,8 @@ def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labe
     return pc_df
 
 def plot_pca(data):
-    fig = plt.figure()
-    sns.lmplot(x="PC1", y="PC2",
+
+    fig = sns.lmplot(x="PC1", y="PC2",
                data=data,
                fit_reg=False,
                hue='Species',  # color by cluster

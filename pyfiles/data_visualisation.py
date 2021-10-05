@@ -74,8 +74,8 @@ def plot_pca_variance(data):
     plt.legend(loc='upper right', bbox_to_anchor=(1, 0.85))
     plt.xticks(list(range(1, n_comp , 2)))
     plt.yticks([i * 0.1 for i in range(0, int((n_comp/2)+1))])
-    #plt.show()
-    return ax
+    plt.show()
+    return fig
 
 
 def run_all_below(ev):
