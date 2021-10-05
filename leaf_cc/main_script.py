@@ -3,6 +3,7 @@ from . import database
 from . import algorithm
 from . import analysis
 import pytest
+import os
 
 def main():
     """Function called from the command line"""
@@ -87,7 +88,9 @@ examples:
         print("Test accuracy:", model.score(X_test, y_test))
 
 def main_test():
-    pytest.main(["-x", "./test_visualisation", "-vv"])
+    print(os.getcwd())
+    print(os.path.dirname(os.path.realpath('__file__')))
+    pytest.main(["-x", "./test_visualisation.py", "-vv"])
     pytest.main(["-x", "./test_modeling.py", "-vv"])
 
 if __name__ == "__main__":
