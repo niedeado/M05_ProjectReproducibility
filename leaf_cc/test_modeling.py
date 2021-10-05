@@ -2,10 +2,10 @@ import pytest
 from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
 import numpy as np
-import database
-import analysis
-import parameter_selection
-import algorithm
+from . import database
+from . import analysis
+from . import parameter_selection
+from . import algorithm
 
 @pytest.fixture
 def dataset_setup():
