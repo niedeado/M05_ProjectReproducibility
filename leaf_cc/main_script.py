@@ -4,6 +4,7 @@ from . import algorithm
 from . import analysis
 import pytest
 import os
+import pkg_resources
 
 def main():
     """Function called from the command line"""
@@ -90,8 +91,10 @@ examples:
 def main_test():
     print(os.getcwd())
     print(os.path.dirname(os.path.realpath('__file__')))
-    pytest.main(["-x", "./test_visualisation.py", "-vv"])
-    pytest.main(["-x", "./test_modeling.py", "-vv"])
+    FILE_1 = pkg_resources.resource_filename(__name__, "test_visualisation.py")
+    FILE_2 = pkg_resources.resource_filename(__name__, "test_modeling.py")
+    pytest.main(["-x", FILE_1, "-vv"])
+    pytest.main(["-x", FILE_2, "-vv"])
 
 if __name__ == "__main__":
     main()
