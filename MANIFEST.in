@@ -1,0 +1,2 @@
+include README.rst leaf_cc/data/data_Sha_64.txt requirements_pkg.txt
+recursive-include doc conf.py *.rst *.ico *.png
