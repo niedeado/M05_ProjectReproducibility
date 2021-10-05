@@ -1,9 +1,8 @@
-import pytest
 from unittest.mock import patch
 import pandas as pd
 import numpy as np
 import ipywidgets as widgets
-import data_visualisation
+from . import data_visualisation
 import string
 
 def test_load_widgets():

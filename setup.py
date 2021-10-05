@@ -11,7 +11,7 @@ def load_requirements(f):
 
 setup(
     name="leaf_cc",
-    version="0.1.0",
+    version="1.0.0",
     description="Project Reproducible Research with a Leaf Classification Problem",
     url="https://github.com/niedeado/M05_ProjectReproducibility",
     license="MIT",
@@ -23,7 +23,7 @@ setup(
     include_package_data=True,
     install_requires=load_requirements("requirements_pkg.txt"),
     entry_points={"console_scripts": ["leaf_cc-run_model = leaf_cc.main_script:main",
-                                      "leafcc-run_test= leaf_cc.main_script:main_test"]},
+                                      "leaf_cc-run_test= leaf_cc.main_script:main_test"]},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
