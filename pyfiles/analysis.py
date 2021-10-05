@@ -6,7 +6,9 @@ ITER_BOUND = 100
 PRINT_BOUND = 10
 
 def get_labels_analysis(y_true, y_pred, labels_inv_map):
-    """Function that generates a trained RandomForestClassifier model
+    """Transforms labels (ground truth and predictions) from
+    integer class representation to plant species representation.
+
 
     Parameters
     ==========
@@ -54,7 +56,9 @@ def get_labels_analysis(y_true, y_pred, labels_inv_map):
 
 
 def visualize_report(y_true, y_pred, labels_inv_map):
-    """Function that generates a trained RandomForestClassifier model
+    """Generates a classification report from integer class 
+    representation labels (ground truth and predictions)
+
 
     Parameters
     ==========
@@ -89,7 +93,9 @@ def visualize_report(y_true, y_pred, labels_inv_map):
 
 def inspect_misclassified(y_true, y_pred, labels_inv_map,
                          iter_bound=ITER_BOUND, print_bound=PRINT_BOUND):
-    """Function that generates a trained RandomForestClassifier model
+    """Returns a list of strings highlighting plant species with
+    most misclassified instances.
+
 
     Parameters
     ==========
@@ -134,6 +140,8 @@ def inspect_misclassified(y_true, y_pred, labels_inv_map,
     labels_true, labels_predict, labels_order = get_labels_analysis(y_true, y_pred, labels_inv_map)
     
     cm = confusion_matrix(labels_true, labels_predict, labels=labels_order)
+    # idxs_cm is a tuple of coordinates of the confusion matrix elements
+    # sorted in a decreasing order
     idxs_cm = np.unravel_index(np.argsort(cm, axis=None)[::-1], cm.shape)
 
     print_count = 0
@@ -141,6 +149,8 @@ def inspect_misclassified(y_true, y_pred, labels_inv_map,
     misclassified_msg = []
     while (print_count < print_bound) and (i < iter_bound):
         i += 1
+        # check if we are not considering an element on the diagonal
+        # i.e. a correct classification
         if idxs_cm[0][i] != idxs_cm[1][i]:
             print_count += 1
             misclassified_msg.append(f"{labels_inv_map[idxs_cm[0][i]]} was predicted as {labels_inv_map[idxs_cm[1][i]]}: {cm[idxs_cm[0][i], idxs_cm[1][i]]} times")
