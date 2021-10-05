@@ -22,7 +22,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=load_requirements("requirements_pkg.txt"),
-    entry_points={"console_scripts": ["leaf_cc-main_script = leaf_cc.main_script.__main__:main"]},
+    entry_points={"console_scripts": ["leaf_cc-main_script = leaf_cc.main_script:main"]},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
