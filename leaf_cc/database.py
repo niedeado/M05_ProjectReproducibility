@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import sys
 import numpy as np
 from sklearn.model_selection import train_test_split
 import pkg_resources
@@ -11,9 +12,12 @@ SEED = 0
 
 
 def load():
+    print("CWD", os.getcwd())
+    print("SYS", sys.argv[0])
+    print("REALPATH", os.path.dirname(os.path.realpath('__file__')))
     try:
         dataset = pd.read_csv(os.path.join(DATA_DIR, DATA_TXT), header=None)
-    except:
+    except FileNotFoundError:
         DATAFILE = pkg_resources.resource_filename(__name__, "data_Sha_64.txt")
         dataset = pd.read_csv(DATAFILE, header=None)
 
