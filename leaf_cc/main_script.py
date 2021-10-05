@@ -89,8 +89,6 @@ examples:
         print("Test accuracy:", model.score(X_test, y_test))
 
 def main_test():
-    print(os.getcwd())
-    print(os.path.dirname(os.path.realpath('__file__')))
     FILE_1 = pkg_resources.resource_filename(__name__, "test_visualisation.py")
     FILE_2 = pkg_resources.resource_filename(__name__, "test_modeling.py")
     pytest.main(["-x", FILE_1, "-vv"])
