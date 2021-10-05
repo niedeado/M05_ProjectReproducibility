@@ -2,7 +2,7 @@
 from . import database
 from . import algorithm
 from . import analysis
-
+import pytest
 
 def main():
     """Function called from the command line"""
@@ -86,6 +86,9 @@ examples:
         print("\nTraining accuracy:", model.score(X_train, y_train))
         print("Test accuracy:", model.score(X_test, y_test))
 
+def main_test():
+    pytest.main(["-x", "/test.py", "-vv"])
+    pytest.main(["-x", "/test_modeling.py", "-vv"])
 
 if __name__ == "__main__":
     main()
