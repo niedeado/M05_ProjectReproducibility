@@ -53,6 +53,7 @@ def test_visualize_report():
     y_pred = np.array([1, 1, 1, 0, 0, 1, 0])
     labels_inv_map = {0: "Pippo", 1: "Pluto"}
     report = analysis.visualize_report(y_true, y_pred, labels_inv_map)
+    # filters out spaces and then empty strings in the report.
     report_split = [s for s in report.split(" ") if s != '']
     accuracy_idx = report_split.index("accuracy") + 1
     assert report_split[accuracy_idx] == str(0.57)
