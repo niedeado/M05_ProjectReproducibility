@@ -102,7 +102,8 @@ examples:
 
 
     if args.notebook:
-        os.system("jupyter notebook ./notebooks/VisualWidget.ipynb")
+        IPYNB_FILE = pkg_resources.resource_filename(__name__, "./notebooks/VisualWidget.ipynb")
+        os.system(f"jupyter notebook {IPYNB_FILE}")
 
 def main_test():
     FILE_1 = pkg_resources.resource_filename(__name__, "test_visualisation.py")
