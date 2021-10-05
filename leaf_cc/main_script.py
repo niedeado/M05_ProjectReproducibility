@@ -101,7 +101,7 @@ examples:
         print("Test accuracy:", model.score(X_test, y_test))
 
 
-    if args.output[3]:
+    if args.notebook:
         os.system("jupyter notebook ./notebooks/VisualWidget.ipynb")
 
 def main_test():
