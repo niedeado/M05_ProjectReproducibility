@@ -78,7 +78,7 @@ def plot_pca_variance(data):
     return fig
 
 
-def run_all_below(ev):
+def run_all_below():
     Idp.display(Javascript(
         'IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))
     return None
