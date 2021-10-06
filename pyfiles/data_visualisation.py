@@ -39,7 +39,7 @@ def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labe
     return pc_df
 
 def plot_pca(data):
-    sns.lmplot(x="PC1", y="PC2",
+    fig = sns.lmplot(x="PC1", y="PC2",
                data=data,
                fit_reg=False,
                hue='Species',  # color by cluster
@@ -52,6 +52,7 @@ def plot_pca(data):
     plt.ylabel("PC2", size=14)
     plt.title("\nPCA Plant Species\n", size=20)
     plt.show()
+    return fig
 
 def plot_pca_variance(data):
     n_comp = 20
@@ -60,7 +61,7 @@ def plot_pca_variance(data):
     var_exp = pca.explained_variance_ratio_
     cum_var_exp = np.cumsum(var_exp)
     scale = 0.8
-    plt.figure(figsize=(11.2*scale, 6.3*scale ))
+    fig = plt.figure(figsize=(11.2*scale, 6.3*scale ))
     plt.bar(range(1, n_comp), var_exp, alpha=0.75, align='center',
             label='Individual explanatory variance')
     plt.step(range(1,  n_comp ), cum_var_exp, where='mid',
@@ -74,6 +75,7 @@ def plot_pca_variance(data):
     plt.xticks(list(range(1, n_comp , 2)))
     plt.yticks([i * 0.1 for i in range(0, int((n_comp/2)+1))])
     plt.show()
+    return fig
 
 
 def run_all_below(ev):

@@ -1,2 +1,2 @@
-include README.rst leaf_cc/data/data_Sha_64.txt requirements_pkg.txt
+include README.rst leaf_cc/data/data_Sha_64.txt leaf_cc/notebooks/VisualWidget.ipynb requirements_pkg.txt
 recursive-include doc conf.py *.rst *.ico *.png

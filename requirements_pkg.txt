@@ -7,5 +7,6 @@ pandas
 scikit-learn
 seaborn
 ipywidgets
+notebook
 pytest
 pip

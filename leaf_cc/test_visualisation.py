@@ -58,7 +58,7 @@ def test_plot_pca_variance(mock_plt):
     ncol = 25
     alphabet_string = list(string.ascii_lowercase)
     df = pd.DataFrame(np.random.randint(0, 100, size=(100, ncol)), columns= alphabet_string[:ncol])
-    data_visualisation.plot_pca_variance(df)
+    _ = data_visualisation.plot_pca_variance(df)
     assert mock_plt.figure.called
     assert mock_plt.show.called
 
@@ -68,7 +68,7 @@ def test_plot_pca(mock_plt):
     cols = ['PC1', 'PC2', 'PC3', 'PC4']
     df.columns = cols + df.columns.tolist()[len(cols):]
     df['Species'] = pd.Series(np.random.choice(["Magnolia Heptapeta", 'Ilex Cornuta'], size=len(df), p =[0.5, 0.5]), index=df.index)
-    data_visualisation.plot_pca(df)
+    _ = data_visualisation.plot_pca(df)
     assert mock_plt.ticklabel_format.assert_called_once
     assert mock_plt.show.called
 

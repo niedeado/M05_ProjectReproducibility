@@ -58,6 +58,18 @@ examples:
              " otherwise it does not.",
     )
 
+    parser.add_argument(
+        "-n",
+        "--notebook",
+        choices=[False, True],
+        type=bool,
+        default=False,
+        help="Determines whether to open jupyter notebook with the file "
+             "for visualize the data "
+             "If you choose True, the regarding jupyter notebook file will "
+             "be opened, otherwise not.",
+    )
+
     args = parser.parse_args()
 
     dataset = database.load()
@@ -87,6 +99,11 @@ examples:
     if args.output[2] == '1':
         print("\nTraining accuracy:", model.score(X_train, y_train))
         print("Test accuracy:", model.score(X_test, y_test))
+
+
+    if args.notebook:
+        IPYNB_FILE = pkg_resources.resource_filename(__name__, "./notebooks/VisualWidget.ipynb")
+        os.system(f"jupyter notebook {IPYNB_FILE}")
 
 def main_test():
     FILE_1 = pkg_resources.resource_filename(__name__, "test_visualisation.py")
