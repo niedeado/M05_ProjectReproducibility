@@ -39,7 +39,7 @@ def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labe
     return pc_df
 
 def plot_pca(data):
-    fig, ax = sns.lmplot(x="PC1", y="PC2",
+    fig = sns.lmplot(x="PC1", y="PC2",
                data=data,
                fit_reg=False,
                hue='Species',  # color by cluster
@@ -61,7 +61,7 @@ def plot_pca_variance(data):
     var_exp = pca.explained_variance_ratio_
     cum_var_exp = np.cumsum(var_exp)
     scale = 0.8
-    fig ,ax = plt.figure(figsize=(11.2*scale, 6.3*scale ))
+    fig = plt.figure(figsize=(11.2*scale, 6.3*scale ))
     plt.bar(range(1, n_comp), var_exp, alpha=0.75, align='center',
             label='Individual explanatory variance')
     plt.step(range(1,  n_comp ), cum_var_exp, where='mid',

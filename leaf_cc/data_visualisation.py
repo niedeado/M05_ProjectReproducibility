@@ -54,7 +54,7 @@ def plot_pca(data):
     plt.xlabel("PC1", size=14)
     plt.ylabel("PC2", size=14)
     plt.title("\nPCA Plant Species\n", size=20)
-    #plt.show()
+    plt.show()
     return fig
 
 def plot_pca_variance(data):
@@ -77,7 +77,7 @@ def plot_pca_variance(data):
     plt.legend(loc='upper right', bbox_to_anchor=(1, 0.85))
     plt.xticks(list(range(1, n_comp , 2)))
     plt.yticks([i * 0.1 for i in range(0, int((n_comp/2)+1))])
-    #plt.show()
+    plt.show()
     return fig
 
 
