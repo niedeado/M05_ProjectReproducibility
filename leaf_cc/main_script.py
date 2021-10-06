@@ -106,6 +106,8 @@ examples:
         os.system(f"jupyter notebook {IPYNB_FILE}")
 
 def main_test():
+    """Function called from the command line to run all existing tests in this package"""
+
     FILE_1 = pkg_resources.resource_filename(__name__, "test_visualisation.py")
     FILE_2 = pkg_resources.resource_filename(__name__, "test_modeling.py")
     pytest.main(["-x", FILE_1, "-vv"])
