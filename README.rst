@@ -2,6 +2,8 @@
    :target: https://coveralls.io/github/niedeado/M05_ProjectReproducibility?branch=main
 .. image:: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml/badge.svg?
    :target: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml?branch=main
+.. image:: https://img.shields.io/badge/License-MIT-blue.svg
+   :target: https://opensource.org/licenses/MIT
 
 ============================================================
  Plant Species Classification based on Leaves Shape Features
