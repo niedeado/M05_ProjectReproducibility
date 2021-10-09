@@ -9,16 +9,18 @@ import IPython.display as Idp
 from IPython.display import Javascript
 import ipywidgets as widgets
 
-# initialize some variables for using them as default input values for some functions defined below
+# initialize some variables for using them as default input values for
+# some functions defined below
 dataset = database.load()
 X, y, labels_inv_map, labels_map = database.extract_data_array(dataset)
 X_train, X_test, y_train, y_test = database.split_data(X,y)
 
 
-def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labels_map, labels_inv_map=labels_inv_map):
-    """Runs PCA on the passed data based on the defined parameters and returns a pandas Dataframe.
-    Consider the PCA is always fitted on the whole dataset X_train and the returned Dataframe is
-    dependable on the values from the x_widget object.
+def run_pca(X_train, y_train, mean_widget, std_widget, x_widget,
+            labels_map=labels_map, labels_inv_map=labels_inv_map):
+    """Runs PCA on the passed data based on the defined parameters and returns a
+    pandas Dataframe. Consider the PCA is always fitted on the whole dataset X_train
+    and the returned Dataframe isdependable on the values from the x_widget object.
 
     Parameters
     ==========
@@ -69,7 +71,8 @@ def run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map=labe
     pc = pca.transform(X_train[ix_true, ...])
 
     pc_df = pd.DataFrame(data=pc, columns=['PC1', 'PC2', 'PC3', 'PC4'])
-    pc_df['Species'] = np.array([labels_inv_map.get(label_nr) for label_nr in y_train[ix_true]])
+    pc_df['Species'] = np.array([labels_inv_map.get(label_nr)
+                                 for label_nr in y_train[ix_true]])
 
     return pc_df
 
@@ -158,7 +161,8 @@ def plot_pca_variance(data):
     plt.ylim(0, 1.1)
     plt.xlabel('Principal components')
     plt.ylabel('Amount of explanatory variance')
-    plt.title("\nExplanatory variance of the principal components from the features\n", size=14)
+    plt.title("\nExplanatory variance of the principal components "
+              "from the features\n", size=14)
     plt.legend(loc='upper right', bbox_to_anchor=(1, 0.85))
     plt.xticks(list(range(1, n_comp , 2)))
     plt.yticks([i * 0.1 for i in range(0, int((n_comp/2)+1))])
@@ -179,7 +183,8 @@ def run_all_below():
     """
 
     Idp.display(Javascript(
-        'IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())'))
+        'IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, '
+        'IPython.notebook.ncells())'))
     return None
 
 
