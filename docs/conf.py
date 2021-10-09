@@ -45,6 +45,11 @@ pygments_style = "sphinx"
 project_variable = project.replace(".", "_")
 short_description = u"Plant Species Classification based on Leaves Shape Features"
 
+import pkg_resources
+distribution = pkg_resources.require(project)[0]
+# The short X.Y version.
+version = distribution.version
+
 # -- Options for HTML output ---------------------------------------------------
 
 html_theme = "sphinx_rtd_theme"
@@ -52,6 +57,11 @@ html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 htmlhelp_basename = project_variable + u"_doc"
 
 # -- Post configuration --------------------------------------------------------
+rst_epilog = """
+.. |version| replace:: %s
+""" % (
+    version,
+)
 
 # Default processing flags for sphinx
 autoclass_content = "class"
