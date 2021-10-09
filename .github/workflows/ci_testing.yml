@@ -52,6 +52,7 @@ jobs:
           COVERALLS_FLAG_NAME: ${{ matrix.python-version }}
           COVERALLS_PARALLEL: true
         run: |
+          pip debug
           leaf_cc-run_model --help  #checks help function works at least
           leaf_cc-run_test # run all implemented tests
           leaf_cc-run_model # run default configuration
@@ -61,30 +62,23 @@ jobs:
           coveralls --service=github
 
       - name: Build documentation
-          shell: bash -l {0}
-          run: |
-            sphinx-build docs sphinx  #generates html version of docs
-            touch sphinx/.nojekyll  #pages to be deployed are NOT a Jekyll site
-            coverage html -d sphinx/coverage  #dump coverage report into docs tree
-
-      - name: Upload coverage to coveralls.io
+        if: ${{ matrix.python-version == '3.9' }}
         shell: bash -l {0}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COVERALLS_FLAG_NAME: ${{ matrix.python-version }}
-          COVERALLS_PARALLEL: true
         run: |
-          pip debug
-          coveralls --service=github
+          sphinx-build docs sphinx  #generates html version of docs
+          touch sphinx/.nojekyll  #pages to be deployed are NOT a Jekyll site
+          coverage html -d sphinx/coverage  #dump coverage report into docs tree
 
       - name: Deploy documentation to GitHub Pages
-          if: ${{ matrix.python-version == '3.9' }}  #deploys only one variant
-          uses: crazy-max/ghaction-github-pages@v2
-          with:
-            target_branch: gh-pages
-            build_dir: sphinx
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ matrix.python-version == '3.9' }}  #deploys only one variant
+        # we could also upload just when we release new version by:
+        # ${{ matrix.python-version == '3.9' && startsWith(github.ref, 'refs/tags') }}
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: sphinx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   coveralls:
     name: Indicate completion to coveralls.io
