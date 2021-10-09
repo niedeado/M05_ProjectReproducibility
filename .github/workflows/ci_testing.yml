@@ -30,34 +30,55 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      # Action provided by "conda-incubator" to setup conda env
-      - name: Setup miniconda
-        uses: conda-incubator/setup-miniconda@v2
-        with:
-          miniconda-version: "latest"
-          python-version: ${{ matrix.python-version }}
-          auto-update-conda: true
-          auto-activate-base: false
-          activate-environment: project
-          environment-file: environment.yml
-      - run: conda info
-      
-      # Default action: run something
-      - name: Run tests
+      # Default action: run something (prepares the Python environment)
+      - name: Prepare Python ${{ matrix.python-version }}
         shell: bash -l {0}
         run: |
-          conda info -a
-          pytest -sv --cov=. ./pyfiles/test.py
-          pytest -sv --cov=. ./pyfiles/test_modeling.py
-      - name: Upload coverage to coveralls.io
+          python -m pip install --upgrade pip
+          pip install wheel
+
+      # Default action: run something
+      - name: Install package and build dependencies for Python ${{ matrix.python-version }}
+        shell: bash -l {0}
+        run: |
+          pip install .
+          pip install -r build-requirements_ci.txt  #only required for CI tests
+
+      # Default action: run tests
+      - name: Run all tests and upload coverage to coveralls
         shell: bash -l {0}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_FLAG_NAME: ${{ matrix.python-version }}
           COVERALLS_PARALLEL: true
         run: |
-          conda info -a
+          pip debug
+          leaf_cc-run_model --help  #checks help function works at least
+          leaf_cc-run_test # run all implemented tests
+          leaf_cc-run_model # run default configuration
+          # leaf_cc-run_model --tuning=1 --output=001 # run specific configuration
+          sphinx-build -b doctest docs sphinx  #runs doctests
+          python -m pytest --cov=leaf_cc --pyargs leaf_cc
           coveralls --service=github
+
+      - name: Build documentation
+        if: ${{ matrix.python-version == '3.9' }}
+        shell: bash -l {0}
+        run: |
+          sphinx-build docs sphinx  #generates html version of docs
+          touch sphinx/.nojekyll  #pages to be deployed are NOT a Jekyll site
+          coverage html -d sphinx/coverage  #dump coverage report into docs tree
+
+      - name: Deploy documentation to GitHub Pages
+        if: ${{ matrix.python-version == '3.9' }}  #deploys only one variant
+        # we could also upload just when we release new version by:
+        # ${{ matrix.python-version == '3.9' && startsWith(github.ref, 'refs/tags') }}
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: sphinx
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   coveralls:
     name: Indicate completion to coveralls.io

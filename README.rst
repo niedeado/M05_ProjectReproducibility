@@ -2,6 +2,8 @@
    :target: https://coveralls.io/github/niedeado/M05_ProjectReproducibility?branch=main
 .. image:: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml/badge.svg?
    :target: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml?branch=main
+.. image:: https://img.shields.io/badge/docs-latest-orange.svg
+   :target: https://niedeado.github.io/M05_ProjectReproducibility/
 .. image:: https://img.shields.io/badge/License-MIT-blue.svg
    :target: https://opensource.org/licenses/MIT
 
@@ -27,13 +29,17 @@ The dataset used for the current project can be retrieved at the following link:
 https://archive.ics.uci.edu/ml/datasets/One-hundred+plant+species+leaves+data+set
 
 
-------------
-Installation
-------------
+---------------------------
+Installation & Instructions
+---------------------------
 
-The Project and the corresponding model can be installed by pip as mentioned below. 
-Please run after the installation the provided test, to ensure everything is set up 
-correclty. 
+
+The installation and usage instructions can be accessed `here <https://niedeado.github.io/M05_ProjectReproducibility/>`__.
+
+The Project and the corresponding model can be installed by pip as mentioned below.
+Please run after the installation the provided test, to ensure everything is set up
+correclty.
+
 
 .. code-block:: rst
    

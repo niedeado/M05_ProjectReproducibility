@@ -35,3 +35,13 @@ Main script
 
 .. automodule:: leaf_cc.main_script
    :members:
+
+
+Data Visualisation
+------------------
+
+.. automodule:: leaf_cc.data_visualisation
+   :members:
+   :exclude-members: run_pca
+
+.. autofunction:: leaf_cc.data_visualisation.run_pca(X_train, y_train, mean_widget, std_widget, x_widget, labels_map, labels_inv_map)

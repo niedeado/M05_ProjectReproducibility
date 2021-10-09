@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>leaf_cc.data_visualisation &mdash; leaf_cc  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> leaf_cc
+          </a>
+              <div class="version">
+                1.2.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../license.html">Licensing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">leaf_cc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+      <li>leaf_cc.data_visualisation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for leaf_cc.data_visualisation</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">database</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">decomposition</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">IPython.display</span> <span class="k">as</span> <span class="nn">Idp</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+<span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
+
+<span class="c1"># initialize some variables for using them as default input values for some functions defined below</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">labels_inv_map</span><span class="p">,</span> <span class="n">labels_map</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">extract_data_array</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">split_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="run_pca"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.run_pca">[docs]</a><span class="k">def</span> <span class="nf">run_pca</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">mean_widget</span><span class="p">,</span> <span class="n">std_widget</span><span class="p">,</span> <span class="n">x_widget</span><span class="p">,</span> <span class="n">labels_map</span><span class="o">=</span><span class="n">labels_map</span><span class="p">,</span> <span class="n">labels_inv_map</span><span class="o">=</span><span class="n">labels_inv_map</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Runs PCA on the passed data based on the defined parameters and returns a pandas Dataframe.</span>
+<span class="sd">    Consider the PCA is always fitted on the whole dataset X_train and the returned Dataframe is</span>
+<span class="sd">    dependable on the values from the x_widget object.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    X_train : numpy.ndarray</span>
+<span class="sd">        Data matrix to run PCA on it</span>
+
+<span class="sd">    y_train : numpy.ndarray</span>
+<span class="sd">         Ground truth vector with integer class labels</span>
+
+<span class="sd">    mean_widget : ipywidgets.widgets.widget_bool.Checkbox</span>
+<span class="sd">        Widgets that indicates to center the data before scaling</span>
+
+<span class="sd">    std_widget : ipywidgets.widgets.widget_bool.Checkbox</span>
+<span class="sd">        Widget that indicates to scale the data to unit variance</span>
+
+<span class="sd">    x_widget : ipywidgets.widgets.widget_selection.SelectMultiple</span>
+<span class="sd">        Widget that defines, which data observation is returned,</span>
+<span class="sd">        based on the containing labels in the widget object</span>
+
+<span class="sd">    labels_map : dict</span>
+<span class="sd">        Dictionary that maps from plant species representation</span>
+<span class="sd">        to integer class represention.</span>
+
+<span class="sd">    labels_inv_map : dict</span>
+<span class="sd">        Dictionary that maps from integer class represention</span>
+<span class="sd">        to plant species representation.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+
+<span class="sd">    pc_df : pandas.DataFrame</span>
+<span class="sd">        Data matrix with 4 PCA-Components and the regarding</span>
+<span class="sd">        label entry as &#39;Species&#39; in plant species representation .</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ss</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">(</span><span class="n">with_mean</span><span class="o">=</span><span class="n">mean_widget</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">with_std</span><span class="o">=</span><span class="n">std_widget</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">train_data</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">train_data</span><span class="p">)</span>
+
+    <span class="n">chosen_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">x_widget</span><span class="o">.</span><span class="n">value</span><span class="p">])</span>
+    <span class="n">ix_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">in1d</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">chosen_labels</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+    <span class="n">pc</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">ix_true</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+
+    <span class="n">pc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pc</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="s1">&#39;PC2&#39;</span><span class="p">,</span> <span class="s1">&#39;PC3&#39;</span><span class="p">,</span> <span class="s1">&#39;PC4&#39;</span><span class="p">])</span>
+    <span class="n">pc_df</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels_inv_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_nr</span><span class="p">)</span> <span class="k">for</span> <span class="n">label_nr</span> <span class="ow">in</span> <span class="n">y_train</span><span class="p">[</span><span class="n">ix_true</span><span class="p">]])</span>
+
+    <span class="k">return</span> <span class="n">pc_df</span></div>
+
+
+<div class="viewcode-block" id="plot_pca"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.plot_pca">[docs]</a><span class="k">def</span> <span class="nf">plot_pca</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Creates the plot figure of the passed data of the observations in 2d and</span>
+<span class="sd">    returns the figure object.</span>
+<span class="sd">    Consider that the method matplotlib.pyplot.show is called inside this function</span>
+<span class="sd">    and the plot is showed if the regarding executing environment supports to show</span>
+<span class="sd">    figures.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    data : pandas.DataFrame</span>
+<span class="sd">        Pandas dataframe with at least two PCA-Components</span>
+<span class="sd">        named &#39;PC1&#39; and &#39;PC2&#39; and the Column &#39;Species&#39;</span>
+<span class="sd">        to indicate the label of the observations in the</span>
+<span class="sd">        plot.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+
+<span class="sd">    fig : matplotlib.figure.Figure</span>
+<span class="sd">        Figure instance that contains all the plot properties</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;PC1&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;PC2&quot;</span><span class="p">,</span>
+               <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+               <span class="n">fit_reg</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+               <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Species&#39;</span><span class="p">,</span>  <span class="c1"># color by cluster</span>
+               <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+               <span class="n">scatter_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">},</span>
+               <span class="n">height</span><span class="o">=</span><span class="mf">6.3</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">11.2</span> <span class="o">/</span> <span class="mf">6.3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;PC1&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;PC2&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">PCA Plant Species</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<div class="viewcode-block" id="plot_pca_variance"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.plot_pca_variance">[docs]</a><span class="k">def</span> <span class="nf">plot_pca_variance</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Runs PCA on passed data and creates the plot figure to visualize the</span>
+<span class="sd">    variance corresponding to each component and returns finally the figure object.</span>
+<span class="sd">    Consider that the method matplotlib.pyplot.show is called inside this function</span>
+<span class="sd">    and the plot is showed if the regarding executing environment supports to show</span>
+<span class="sd">    figures.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    data : numpy.ndarray</span>
+<span class="sd">        Data matrix to run PCA on it.</span>
+<span class="sd">        The shape on axis =1 has to be</span>
+<span class="sd">        at least 19.</span>
+
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+
+<span class="sd">    fig : matplotlib.figure.Figure</span>
+<span class="sd">        Figure instance that contains all the plot properties</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">n_comp</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">decomposition</span><span class="o">.</span><span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="n">n_comp</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">var_exp</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
+    <span class="n">cum_var_exp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">var_exp</span><span class="p">)</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="mf">0.8</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">11.2</span><span class="o">*</span><span class="n">scale</span><span class="p">,</span> <span class="mf">6.3</span><span class="o">*</span><span class="n">scale</span> <span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_comp</span><span class="p">),</span> <span class="n">var_exp</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Individual explanatory variance&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="n">n_comp</span> <span class="p">),</span> <span class="n">cum_var_exp</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;mid&#39;</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cumulative explanatory variance&#39;</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.867</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">))</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal components&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amount of explanatory variance&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Explanatory variance of the principal components from the features</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_comp</span> <span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">i</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">n_comp</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span></div>
+
+
+<div class="viewcode-block" id="run_all_below"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.run_all_below">[docs]</a><span class="k">def</span> <span class="nf">run_all_below</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Run all cells below the current cell form a Jupyter notebook</span>
+<span class="sd">    without executing the cell that has this button from where this</span>
+<span class="sd">    function is called.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+
+<span class="sd">    None</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Idp</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span>
+        <span class="s1">&#39;IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+
+<div class="viewcode-block" id="load_widgets"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.load_widgets">[docs]</a><span class="k">def</span> <span class="nf">load_widgets</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Load and display the Jupyter widgets needed in the notebook</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+
+<span class="sd">    x_widget : ipywidgets.widgets.widget_selection.SelectMultiple</span>
+<span class="sd">        SelectMultiple widget, that contains in the attribute &#39;value&#39;</span>
+<span class="sd">        a list with all the selected species.</span>
+
+<span class="sd">    mean_widget : ipywidgets.widgets.widget_bool.Checkbox</span>
+<span class="sd">        Checkbox widget, that contains in the attribute &#39;value&#39;</span>
+<span class="sd">        a bool value.</span>
+
+<span class="sd">    std_widget : ipywidgets.widgets.widget_bool.Checkbox</span>
+<span class="sd">        Checkbox widget, that contains in the attribute &#39;value&#39;</span>
+<span class="sd">        a bool value.</span>
+
+<span class="sd">    button_widget : ipywidgets.widgets.widget_button.Button</span>
+<span class="sd">        Button which is connected to the function &#39;run_all_below&#39;</span>
+<span class="sd">        By clicking on that button, all cells below it in the</span>
+<span class="sd">        Jupyter notebook file will be executed.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">species</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">species</span><span class="p">)))</span>
+
+    <span class="n">x_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">SelectMultiple</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">species</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Magnolia Heptapeta&quot;</span><span class="p">],</span>
+                                      <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Species</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                      <span class="n">rows</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+    <span class="n">mean_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Scale by Mean&#39;</span><span class="p">)</span>
+
+    <span class="n">std_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Scale by Std&#39;</span><span class="p">)</span>
+
+    <span class="n">button_widget</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Update&#39;</span><span class="p">,</span>
+                                   <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                   <span class="n">button_style</span><span class="o">=</span><span class="s1">&#39;primary&#39;</span><span class="p">,</span>
+                                   <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Update&#39;</span><span class="p">)</span>
+
+    <span class="n">box_layout</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">display</span><span class="o">=</span><span class="s1">&#39;flex&#39;</span><span class="p">,</span>
+                                <span class="n">flex_flow</span><span class="o">=</span><span class="s1">&#39;column&#39;</span><span class="p">,</span>
+                                <span class="n">align_items</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                                <span class="n">width</span><span class="o">=</span><span class="s1">&#39;34%&#39;</span><span class="p">)</span>
+
+    <span class="n">box</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HBox</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span><span class="n">button_widget</span><span class="p">],</span> <span class="n">layout</span><span class="o">=</span><span class="n">box_layout</span><span class="p">)</span>
+
+    <span class="n">button_widget</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">run_all_below</span><span class="p">)</span>
+
+    <span class="c1"># Display all widgets</span>
+    <span class="n">Idp</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">x_widget</span><span class="p">)</span>
+    <span class="n">Idp</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">mean_widget</span><span class="p">)</span>
+    <span class="n">Idp</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">std_widget</span><span class="p">)</span>
+    <span class="n">Idp</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">x_widget</span><span class="p">,</span> <span class="n">mean_widget</span><span class="p">,</span> <span class="n">std_widget</span><span class="p">,</span> <span class="n">button_widget</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">x_widget</span><span class="p">,</span> <span class="n">mean_widget</span><span class="p">,</span> <span class="n">std_widget</span><span class="p">,</span> <span class="n">button_widget</span><span class="o">=</span> <span class="n">load_widgets</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
