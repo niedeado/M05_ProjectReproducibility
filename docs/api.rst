@@ -35,3 +35,10 @@ Main script
 
 .. automodule:: leaf_cc.main_script
    :members:
+
+Data Visualisation
+------------------
+
+.. automodule:: leaf_cc.data_visualisation
+   :members:
+

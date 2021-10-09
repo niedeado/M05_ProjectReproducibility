@@ -1,12 +1,14 @@
 channels:
   - defaults
 dependencies:
-  - numpy
+  - numpy>=1.16.5
   - scipy
   - pandas
   - scikit-learn
   - seaborn
   - ipywidgets
+  - sphinx
+  - sphinx_rtd_theme
   - pytest
   - pytest-cov
   - pip

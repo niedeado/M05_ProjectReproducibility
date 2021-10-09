@@ -42,11 +42,12 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#database">Database</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.parameter_selection">Parameter selection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.algorithm">Machine Learning Algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.analysis">Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.main_script">Main script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-script">Main script</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-visualisation">Data Visualisation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
@@ -78,75 +79,8 @@
              
   <section id="python-api">
 <h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline"></a></h1>
-<section id="module-leaf_cc.database">
-<span id="database"></span><h2>Database<a class="headerlink" href="#module-leaf_cc.database" title="Permalink to this headline"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="leaf_cc.database.load">
-<span class="sig-prename descclassname"><span class="pre">leaf_cc.database.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/database.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.database.load" title="Permalink to this definition"></a></dt>
-<dd><p>Loads data from a txt file and returns it as a pandas dataframe</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p><strong>dataset</strong> – Pandas dataframe with n_samples rows and
-n_features+1 columns.
-The first columns indicates the plant species,
-considered as class in the classification problem.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>pandas.DataFrame</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leaf_cc.database.extract_data_array">
-<span class="sig-prename descclassname"><span class="pre">leaf_cc.database.</span></span><span class="sig-name descname"><span class="pre">extract_data_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/database.html#extract_data_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.database.extract_data_array" title="Permalink to this definition"></a></dt>
-<dd><p>Extracts arrays and label maps from pandas dataframe dataset</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dataset</strong> (<em>pandas.DataFrame</em>) – Pandas dataframe with n_samples rows and
-n_features+1 columns.
-The first columns indicates the plant species,
-considered as class in the classification problem.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>X</strong> (<em>numpy.ndarray</em>) – Data matrix of shape (n_samples, n_features).</p></li>
-<li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Ground truth vector of shape (n_samples,).</p></li>
-<li><p><strong>labels_inv_map</strong> (<em>dict</em>) – Dictionary that maps from integer class represention
-to plant species representation.</p></li>
-<li><p><strong>labels_map</strong> (<em>dict</em>) – Dictionary that maps from plant species representation
-to integer class represention.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leaf_cc.database.split_data">
-<span class="sig-prename descclassname"><span class="pre">leaf_cc.database.</span></span><span class="sig-name descname"><span class="pre">split_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/database.html#split_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.database.split_data" title="Permalink to this definition"></a></dt>
-<dd><p>Splits data into training and test sets.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>X</strong> (<em>numpy.ndarray</em>) – Data matrix of shape (n_samples, n_features).</p></li>
-<li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Ground truth vector of shape (n_samples,).</p></li>
-<li><p><strong>test_size</strong> (<em>float</em>) – Percentage of data points directed to the test set.</p></li>
-<li><p><strong>random_state</strong> (<em>int</em>) – Random seed, necessary for reproducibility</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>X_train</strong> (<em>numpy.ndarray</em>) – Training data matrix.</p></li>
-<li><p><strong>X_test</strong> (<em>numpy.ndarray</em>) – Testing data matrix.</p></li>
-<li><p><strong>y_train</strong> (<em>numpy.ndarray</em>) – Training ground truth vector.</p></li>
-<li><p><strong>y_test</strong> (<em>numpy.ndarray</em>) – Testing ground truth vector.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
+<section id="database">
+<h2>Database<a class="headerlink" href="#database" title="Permalink to this headline"></a></h2>
 </section>
 <section id="module-leaf_cc.parameter_selection">
 <span id="parameter-selection"></span><h2>Parameter selection<a class="headerlink" href="#module-leaf_cc.parameter_selection" title="Permalink to this headline"></a></h2>
@@ -308,21 +242,11 @@ most plant species misclassifications occur.</p>
 </dd></dl>
 
 </section>
-<section id="module-leaf_cc.main_script">
-<span id="main-script"></span><h2>Main script<a class="headerlink" href="#module-leaf_cc.main_script" title="Permalink to this headline"></a></h2>
-<p>Main script to be launched from the command line</p>
-<dl class="py function">
-<dt class="sig sig-object py" id="leaf_cc.main_script.main">
-<span class="sig-prename descclassname"><span class="pre">leaf_cc.main_script.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/main_script.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.main_script.main" title="Permalink to this definition"></a></dt>
-<dd><p>Function called from the command line</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leaf_cc.main_script.main_test">
-<span class="sig-prename descclassname"><span class="pre">leaf_cc.main_script.</span></span><span class="sig-name descname"><span class="pre">main_test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/main_script.html#main_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.main_script.main_test" title="Permalink to this definition"></a></dt>
-<dd><p>Function called from the command line to run all existing tests in this package</p>
-</dd></dl>
-
+<section id="main-script">
+<h2>Main script<a class="headerlink" href="#main-script" title="Permalink to this headline"></a></h2>
+</section>
+<section id="data-visualisation">
+<h2>Data Visualisation<a class="headerlink" href="#data-visualisation" title="Permalink to this headline"></a></h2>
 </section>
 </section>
 

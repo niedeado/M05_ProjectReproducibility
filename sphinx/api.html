@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python API &mdash; leaf_cc  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Licensing" href="license.html" />
+    <link rel="prev" title="User Guide" href="guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> leaf_cc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.database">Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.parameter_selection">Parameter selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.algorithm">Machine Learning Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.analysis">Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-leaf_cc.main_script">Main script</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">leaf_cc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Python API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="python-api">
+<h1>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline"></a></h1>
+<section id="module-leaf_cc.database">
+<span id="database"></span><h2>Database<a class="headerlink" href="#module-leaf_cc.database" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.database.load">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.database.</span></span><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/database.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.database.load" title="Permalink to this definition"></a></dt>
+<dd><p>Loads data from a txt file and returns it as a pandas dataframe</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>dataset</strong> – Pandas dataframe with n_samples rows and
+n_features+1 columns.
+The first columns indicates the plant species,
+considered as class in the classification problem.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.database.extract_data_array">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.database.</span></span><span class="sig-name descname"><span class="pre">extract_data_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/database.html#extract_data_array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.database.extract_data_array" title="Permalink to this definition"></a></dt>
+<dd><p>Extracts arrays and label maps from pandas dataframe dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<em>pandas.DataFrame</em>) – Pandas dataframe with n_samples rows and
+n_features+1 columns.
+The first columns indicates the plant species,
+considered as class in the classification problem.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>X</strong> (<em>numpy.ndarray</em>) – Data matrix of shape (n_samples, n_features).</p></li>
+<li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Ground truth vector of shape (n_samples,).</p></li>
+<li><p><strong>labels_inv_map</strong> (<em>dict</em>) – Dictionary that maps from integer class represention
+to plant species representation.</p></li>
+<li><p><strong>labels_map</strong> (<em>dict</em>) – Dictionary that maps from plant species representation
+to integer class represention.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.database.split_data">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.database.</span></span><span class="sig-name descname"><span class="pre">split_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/database.html#split_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.database.split_data" title="Permalink to this definition"></a></dt>
+<dd><p>Splits data into training and test sets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>numpy.ndarray</em>) – Data matrix of shape (n_samples, n_features).</p></li>
+<li><p><strong>y</strong> (<em>numpy.ndarray</em>) – Ground truth vector of shape (n_samples,).</p></li>
+<li><p><strong>test_size</strong> (<em>float</em>) – Percentage of data points directed to the test set.</p></li>
+<li><p><strong>random_state</strong> (<em>int</em>) – Random seed, necessary for reproducibility</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>X_train</strong> (<em>numpy.ndarray</em>) – Training data matrix.</p></li>
+<li><p><strong>X_test</strong> (<em>numpy.ndarray</em>) – Testing data matrix.</p></li>
+<li><p><strong>y_train</strong> (<em>numpy.ndarray</em>) – Training ground truth vector.</p></li>
+<li><p><strong>y_test</strong> (<em>numpy.ndarray</em>) – Testing ground truth vector.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-leaf_cc.parameter_selection">
+<span id="parameter-selection"></span><h2>Parameter selection<a class="headerlink" href="#module-leaf_cc.parameter_selection" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.parameter_selection.selection_criteria">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.parameter_selection.</span></span><span class="sig-name descname"><span class="pre">selection_criteria</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_accs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/parameter_selection.html#selection_criteria"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.parameter_selection.selection_criteria" title="Permalink to this definition"></a></dt>
+<dd><p>Returns hyperparameters having the best validation accuracy</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>parameters</strong> (<em>list</em>) – List of hyperparameters (dicts)</p></li>
+<li><p><strong>validation_accs</strong> (<em>list</em>) – List of validation accuracies (floats)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>best_params</strong> – Hyperparameters having the highest validation accuracy</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.parameter_selection.hyperparam_tuning">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.parameter_selection.</span></span><span class="sig-name descname"><span class="pre">hyperparam_tuning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickle_dump</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/parameter_selection.html#hyperparam_tuning"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.parameter_selection.hyperparam_tuning" title="Permalink to this definition"></a></dt>
+<dd><p>Grid search hyperparameters tuning via cross validation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>numpy.ndarray</em>) – Training data matrix.</p></li>
+<li><p><strong>y_train</strong> (<em>numpy.ndarray</em>) – Training ground truth vector.</p></li>
+<li><p><strong>pickle_dump</strong> (<em>bool</em>) – If true, pickle dumps best hyperparameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>best_params</strong> – Hyperparameters having the highest average validation accuracy.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-leaf_cc.algorithm">
+<span id="machine-learning-algorithm"></span><h2>Machine Learning Algorithm<a class="headerlink" href="#module-leaf_cc.algorithm" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.algorithm.train">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.algorithm.</span></span><span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hyperparameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'max_depth':</span> <span class="pre">None,</span> <span class="pre">'max_features':</span> <span class="pre">'log2',</span> <span class="pre">'n_estimators':</span> <span class="pre">200}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickle_dump</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/algorithm.html#train"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.algorithm.train" title="Permalink to this definition"></a></dt>
+<dd><p>Function that generates a trained RandomForestClassifier model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X_train</strong> (<em>numpy.ndarray</em>) – Training data matrix.</p></li>
+<li><p><strong>y_train</strong> (<em>numpy.ndarray</em>) – Training ground truth vector.</p></li>
+<li><p><strong>hyperparameters</strong> (<em>dict</em>) – Dictionary with RandomForestClassifier arguments as keys.
+If a None value is passed as argument, hyperparameter tuning
+is conducted.</p></li>
+<li><p><strong>pickle_dump</strong> (<em>bool</em>) – Boolean variable, if True it pickle dumps best hyperparameters
+in case hyperparameter tuning is conducted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rf_clf</strong> – Trained RandomForestClassifier model</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>RandomForestClassifier</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-leaf_cc.analysis">
+<span id="analysis"></span><h2>Analysis<a class="headerlink" href="#module-leaf_cc.analysis" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.analysis.get_labels_analysis">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.analysis.</span></span><span class="sig-name descname"><span class="pre">get_labels_analysis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_inv_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/analysis.html#get_labels_analysis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.analysis.get_labels_analysis" title="Permalink to this definition"></a></dt>
+<dd><p>Transforms labels (ground truth and predictions) from
+integer class representation to plant species representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> (<em>numpy.ndarray</em>) – Ground truth vector of shape (n_samples,).
+Integer class representation.</p></li>
+<li><p><strong>y_pred</strong> (<em>numpy.ndarray</em>) – Prediction vector of shape (n_samples,).
+Integer class representation.</p></li>
+<li><p><strong>labels_inv_map</strong> (<em>dict</em>) – Dictionary that maps from integer class represention
+to plant species representation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>labels_true</strong> (<em>list</em>) – Ground truth list of length n_samples.
+Plant species representation.</p></li>
+<li><p><strong>labels_predict</strong> (<em>list</em>) – Prediction list of length n_samples.
+Plant species representation.</p></li>
+<li><p><strong>labels_order</strong> (<em>list</em>) – List of length n_classes, containing all plant species.
+It sets an order for later analysis.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.analysis.visualize_report">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.analysis.</span></span><span class="sig-name descname"><span class="pre">visualize_report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_inv_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/analysis.html#visualize_report"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.analysis.visualize_report" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a classification report from integer class
+representation labels (ground truth and predictions)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> (<em>numpy.ndarray</em>) – Ground truth vector of shape (n_samples,).
+Integer class representation.</p></li>
+<li><p><strong>y_pred</strong> (<em>numpy.ndarray</em>) – Prediction vector of shape (n_samples,).
+Integer class representation.</p></li>
+<li><p><strong>labels_inv_map</strong> (<em>dict</em>) – Dictionary that maps from integer class represention
+to plant species representation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>report</strong> – Classification report from scikit-learn.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.analysis.inspect_misclassified">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.analysis.</span></span><span class="sig-name descname"><span class="pre">inspect_misclassified</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_inv_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iter_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_bound</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/analysis.html#inspect_misclassified"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.analysis.inspect_misclassified" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of strings highlighting plant species with
+most misclassified instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>y_true</strong> (<em>numpy.ndarray</em>) – Ground truth vector.
+Integer class representation.</p></li>
+<li><p><strong>y_pred</strong> (<em>numpy.ndarray</em>) – Prediction vector.
+Integer class representation.</p></li>
+<li><p><strong>labels_inv_map</strong> (<em>dict</em>) – Dictionary that maps from integer class represention
+to plant species representation.</p></li>
+<li><p><strong>iter_bound</strong> (<em>int</em>) – Maximum bound on number of iterations while searching for
+important misclassifications.
+It has an impact if it is small with respect to n_classes.</p></li>
+<li><p><strong>print_bound</strong> (<em>int</em>) – Maximum bound on number of misclassified_msg elements.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>misclassified_msg</strong> – List containing messages strings highlighting where
+most plant species misclassifications occur.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-leaf_cc.main_script">
+<span id="main-script"></span><h2>Main script<a class="headerlink" href="#module-leaf_cc.main_script" title="Permalink to this headline"></a></h2>
+<p>Main script to be launched from the command line</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.main_script.main">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.main_script.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/main_script.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.main_script.main" title="Permalink to this definition"></a></dt>
+<dd><p>Function called from the command line</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leaf_cc.main_script.main_test">
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.main_script.</span></span><span class="sig-name descname"><span class="pre">main_test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/main_script.html#main_test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.main_script.main_test" title="Permalink to this definition"></a></dt>
+<dd><p>Function called from the command line to run all existing tests in this package</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="license.html" class="btn btn-neutral float-right" title="Licensing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
