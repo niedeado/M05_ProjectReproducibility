@@ -170,7 +170,7 @@ def plot_pca_variance(data):
     return fig
 
 
-def run_all_below():
+def run_all_below(ev):
     """Run all cells below the current cell form a Jupyter notebook,
     without executing the cell that has this button from where this
     function is called.
