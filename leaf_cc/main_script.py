@@ -105,6 +105,9 @@ examples:
         IPYNB_FILE = pkg_resources.resource_filename(__name__, "./notebooks/VisualWidget.ipynb")
         os.system(f"jupyter notebook {IPYNB_FILE}")
 
+    return True
+    
+
 def main_test():
     """Function called from the command line to run all existing tests in this package"""
 

@@ -6,6 +6,7 @@ from . import database
 from . import analysis
 from . import parameter_selection
 from . import algorithm
+from . import main_script
 
 @pytest.fixture
 def dataset_setup():
@@ -82,3 +83,7 @@ def test_selection_criteria():
     validation_accs = [0.2, 0.7, 0.9]
     best_params = parameter_selection.selection_criteria(parameters, validation_accs)
     assert best_params == {'n_estimators': 200, 'max_depth': 20, 'max_features': 'log2'}
+
+
+def test_main_script():
+    assert main_script.main()
