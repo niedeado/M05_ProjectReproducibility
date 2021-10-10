@@ -1,3 +1,5 @@
+.. _activities_userguide:
+
 ============
  User Guide
 ============
@@ -12,6 +14,13 @@ From the main directory launch the following command:
 
 
 The classification report, misclassified inspection and score are reported below.
+
+To get to know more about how to run the model with different options, the argument ``-h`` can be passed to the
+main statement to get the help messages.
+
+.. code-block:: sh
+
+   $ leaf_cc-run_model -h
 
 
 Test classification Report
@@ -57,5 +66,7 @@ Visualisation of Species
 
 .. toctree::
     :glob:
+
+    set_up_visual
 
     VisualWidget/*

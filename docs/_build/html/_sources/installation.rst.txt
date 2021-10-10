@@ -1,3 +1,5 @@
+.. _miniconda: https://docs.conda.io/en/latest/miniconda.html
+
 .. _activities_installation:
 
 
@@ -20,7 +22,8 @@ Using Miniconda
 
 The package depends on multiple packages to run properly. Please install the
 version of these packages by creating the environment with the help of the packages listed
-in the requirements_pkg.txt file.
+in the requirements_pkg.txt file. To use conda environments, anaconda or miniconda has to be installed.
+To set up the package, we propose to use miniconda_.
 
 .. code-block:: sh
 
@@ -43,3 +46,4 @@ It is also possible to install the package directly with pip, as shown below.
 
     $ pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@main
     $ leaf_cc-run_test
+    $ leaf_cc-run_model # run model with default configuration
