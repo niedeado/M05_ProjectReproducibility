@@ -8,7 +8,7 @@ From the main directory launch the following command:
 
 .. code-block:: sh
 
-   $ python leaf_cc\main_script.py
+   $ leaf_cc-run_model
 
 
 The classification report, misclassified inspection and score are reported below.
