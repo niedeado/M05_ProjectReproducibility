@@ -1,3 +1,5 @@
+.. _activities_visualwidget:
+
 Visualisation of Plant Species after applying PCA
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

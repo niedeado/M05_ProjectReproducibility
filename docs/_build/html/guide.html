@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Visualisation of Plant Species after applying PCA" href="VisualWidget/VisualWidget.html" />
+    <link rel="next" title="Start Jupyter Notebook with Visualisation File" href="set_up_visual.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
@@ -48,6 +48,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#misclassification-inspection">Misclassification inspection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#score">Score</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#visualisation-of-species">Visualisation of Species</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="set_up_visual.html">Start Jupyter Notebook with Visualisation File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="VisualWidget/VisualWidget.html">Visualisation of Plant Species after applying PCA</a></li>
 </ul>
 </li>
@@ -82,13 +83,18 @@
            <div itemprop="articleBody">
              
   <section id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline"></a></h1>
+<span id="activities-userguide"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline"></a></h1>
 <p>This section shows how to reproduce the classification results.</p>
 <p>From the main directory launch the following command:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ python leaf_cc<span class="se">\m</span>ain_script.py
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ leaf_cc-run_model
 </pre></div>
 </div>
 <p>The classification report, misclassified inspection and score are reported below.</p>
+<p>To get to know more about how to run the model with different options, the argument <code class="docutils literal notranslate"><span class="pre">-h</span></code> can be passed to the
+main statement to get the help messages.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ leaf_cc-run_model -h
+</pre></div>
+</div>
 <section id="test-classification-report">
 <h2>Test classification Report<a class="headerlink" href="#test-classification-report" title="Permalink to this headline"></a></h2>
 <p>(shortened output)</p>
@@ -156,6 +162,7 @@
 <h2>Visualisation of Species<a class="headerlink" href="#visualisation-of-species" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="set_up_visual.html">Start Jupyter Notebook with Visualisation File</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VisualWidget/VisualWidget.html">Visualisation of Plant Species after applying PCA</a></li>
 </ul>
 </div>
@@ -167,7 +174,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="VisualWidget/VisualWidget.html" class="btn btn-neutral float-right" title="Visualisation of Plant Species after applying PCA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="set_up_visual.html" class="btn btn-neutral float-right" title="Start Jupyter Notebook with Visualisation File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

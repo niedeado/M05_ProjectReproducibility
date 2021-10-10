@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Start Jupyter Notebook with Visualisation File &mdash; leaf_cc  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Visualisation of Plant Species after applying PCA" href="VisualWidget/VisualWidget.html" />
+    <link rel="prev" title="User Guide" href="guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> leaf_cc
+          </a>
+              <div class="version">
+                1.2.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="guide.html#test-classification-report">Test classification Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide.html#misclassification-inspection">Misclassification inspection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="guide.html#score">Score</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="guide.html#visualisation-of-species">Visualisation of Species</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Start Jupyter Notebook with Visualisation File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VisualWidget/VisualWidget.html">Visualisation of Plant Species after applying PCA</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">leaf_cc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="guide.html">User Guide</a> &raquo;</li>
+      <li>Start Jupyter Notebook with Visualisation File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/set_up_visual.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="start-jupyter-notebook-with-visualisation-file">
+<span id="activities-set-up-visual"></span><h1>Start Jupyter Notebook with Visualisation File<a class="headerlink" href="#start-jupyter-notebook-with-visualisation-file" title="Permalink to this headline"></a></h1>
+<p>If you followed the <a class="reference internal" href="installation.html#activities-installation"><span class="std std-ref">installation guide</span></a>
+to set set up the package and it is installed successfully, it is now also possible
+to start the jupyter notebook to visualize the data after applying a PCA. How the PCA is
+applied, please take a look at the documentation of <a class="reference internal" href="api.html#leaf_cc.data_visualisation.run_pca" title="leaf_cc.data_visualisation.run_pca"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leaf_cc.data_visualisation.run_pca()</span></code></a>.</p>
+<p>If the package is cloned from git and set up with conda, it is possible to run the
+notebook from command line as follow. Please be sure that the current working directory
+is in the folder leaf_cc, which is ensured if you have followed the installation
+instructions.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ jupyter notebook leaf_cc/notebooks/VisualWidget.ipynb
+</pre></div>
+</div>
+<p>The second possibility is to run the model and activate the option to start the jupyter
+notebook file by adding <code class="docutils literal notranslate"><span class="pre">-n=True</span></code> to the running statement.
+Please consider if you choose this option, the jupyter notebook file is called from the
+package itself, so any modifications are applied into the file in the package.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ $ leaf_cc-run_model -n<span class="o">=</span>True
+</pre></div>
+</div>
+<p>Once the statement is executed and the notebook appeared, all the cells should be restarted.
+How to do that, please refer to the
+<a class="reference external" href="https://jupyter.readthedocs.io/en/latest/install.html">Jupyter Notebook user guide</a>.</p>
+<p>The corresponding file should look like in this appended <a class="reference internal" href="VisualWidget/VisualWidget.html#activities-visualwidget"><span class="std std-ref">example</span></a>.</p>
+<p>To chose multiple species in the dropdown menu, <code class="docutils literal notranslate"><span class="pre">CTRL</span></code> has to be pressed while clicking
+on additional species for selecting.
+After that, by pressing the <code class="docutils literal notranslate"><span class="pre">Update</span></code> button, all the cells below are refreshed.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="VisualWidget/VisualWidget.html" class="btn btn-neutral float-right" title="Visualisation of Plant Species after applying PCA" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

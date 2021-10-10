@@ -58,7 +58,7 @@ Following the described workflow the test set accuracy
 was found to be **0.65**.
 
 For a more detailed description on how to obtain this result,
-please refer to the user guide.
+please refer to the :ref:`user guide <activities_userguide>`.
 
 
 Conclusion

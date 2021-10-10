@@ -88,7 +88,8 @@ the provided test shown in the code blocks below.</p>
 <h2>Using Miniconda<a class="headerlink" href="#using-miniconda" title="Permalink to this headline"></a></h2>
 <p>The package depends on multiple packages to run properly. Please install the
 version of these packages by creating the environment with the help of the packages listed
-in the requirements_pkg.txt file.</p>
+in the requirements_pkg.txt file. To use conda environments, anaconda or miniconda has to be installed.
+To set up the package, we propose to use <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/niedeado/M05_ProjectReproducibility.git leaf_src
 $ <span class="nb">cd</span> leaf_src/
 $ conda create --name leaf --file requirements_pkg.txt
@@ -103,6 +104,7 @@ $ conda activate leaf
 <p>It is also possible to install the package directly with pip, as shown below.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@main
 $ leaf_cc-run_test
+$ leaf_cc-run_model <span class="c1"># run model with default configuration</span>
 </pre></div>
 </div>
 </section>
