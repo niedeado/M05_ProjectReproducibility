@@ -11,7 +11,7 @@ def load_requirements(f):
 
 setup(
     name="leaf_cc",
-    version="1.2.1",
+    version="1.2.2",
     description="Project Reproducible Research with a Leaf Classification Problem",
     url="https://github.com/niedeado/M05_ProjectReproducibility",
     license="MIT",
