@@ -50,3 +50,12 @@ Score
 
 * Training accuracy: 1.0
 * Test accuracy: 0.653125
+
+
+Visualisation of Species
+------------------------
+
+.. toctree::
+    :glob:
+
+    VisualWidget/*
