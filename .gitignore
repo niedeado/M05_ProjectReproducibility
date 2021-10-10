@@ -33,3 +33,9 @@
 *.exe
 *.out
 *.app
+
+*~
+sphinx
+.ipynb_checkpoints
+__pycache__/
+.coverage

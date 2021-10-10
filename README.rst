@@ -1,5 +1,5 @@
-.. image:: https://coveralls.io/repos/github/niedeado/M05_ProjectReproducibility/badge.svg?branch=main
-   :target: https://coveralls.io/github/niedeado/M05_ProjectReproducibility?branch=main
+.. image:: https://coveralls.io/repos/github/niedeado/M05_ProjectReproducibility/badge.svg?branch=main&service=github
+   :target: https://coveralls.io/github/niedeado/M05_ProjectReproducibility?branch=main&service=github
 .. image:: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml/badge.svg?
    :target: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml?branch=main
 .. image:: https://img.shields.io/badge/docs-latest-orange.svg
@@ -72,3 +72,4 @@ UCI Machine Learning Repository::
       url = "http://archive.ics.uci.edu/ml",
       institution = "University of California, Irvine, School of Information and Computer Sciences"
    }
+   
