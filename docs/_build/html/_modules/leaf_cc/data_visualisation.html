@@ -28,7 +28,7 @@
             <a href="../../index.html" class="icon icon-home"> leaf_cc
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -81,16 +81,18 @@
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span> <span class="k">as</span> <span class="nn">widgets</span>
 
-<span class="c1"># initialize some variables for using them as default input values for some functions defined below</span>
+<span class="c1"># initialize some variables for using them as default input values for</span>
+<span class="c1"># some functions defined below</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">labels_inv_map</span><span class="p">,</span> <span class="n">labels_map</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">extract_data_array</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">split_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="run_pca"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.run_pca">[docs]</a><span class="k">def</span> <span class="nf">run_pca</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">mean_widget</span><span class="p">,</span> <span class="n">std_widget</span><span class="p">,</span> <span class="n">x_widget</span><span class="p">,</span> <span class="n">labels_map</span><span class="o">=</span><span class="n">labels_map</span><span class="p">,</span> <span class="n">labels_inv_map</span><span class="o">=</span><span class="n">labels_inv_map</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Runs PCA on the passed data based on the defined parameters and returns a pandas Dataframe.</span>
-<span class="sd">    Consider the PCA is always fitted on the whole dataset X_train and the returned Dataframe is</span>
-<span class="sd">    dependable on the values from the x_widget object.</span>
+<div class="viewcode-block" id="run_pca"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.run_pca">[docs]</a><span class="k">def</span> <span class="nf">run_pca</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">mean_widget</span><span class="p">,</span> <span class="n">std_widget</span><span class="p">,</span> <span class="n">x_widget</span><span class="p">,</span>
+            <span class="n">labels_map</span><span class="o">=</span><span class="n">labels_map</span><span class="p">,</span> <span class="n">labels_inv_map</span><span class="o">=</span><span class="n">labels_inv_map</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Runs PCA on the passed data based on the defined parameters and returns a</span>
+<span class="sd">    pandas Dataframe. Consider the PCA is always fitted on the whole dataset X_train</span>
+<span class="sd">    and the returned Dataframe isdependable on the values from the x_widget object.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ==========</span>
@@ -141,7 +143,8 @@
     <span class="n">pc</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="n">ix_true</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
 
     <span class="n">pc_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">pc</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;PC1&#39;</span><span class="p">,</span> <span class="s1">&#39;PC2&#39;</span><span class="p">,</span> <span class="s1">&#39;PC3&#39;</span><span class="p">,</span> <span class="s1">&#39;PC4&#39;</span><span class="p">])</span>
-    <span class="n">pc_df</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels_inv_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_nr</span><span class="p">)</span> <span class="k">for</span> <span class="n">label_nr</span> <span class="ow">in</span> <span class="n">y_train</span><span class="p">[</span><span class="n">ix_true</span><span class="p">]])</span>
+    <span class="n">pc_df</span><span class="p">[</span><span class="s1">&#39;Species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">labels_inv_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">label_nr</span><span class="p">)</span>
+                                 <span class="k">for</span> <span class="n">label_nr</span> <span class="ow">in</span> <span class="n">y_train</span><span class="p">[</span><span class="n">ix_true</span><span class="p">]])</span>
 
     <span class="k">return</span> <span class="n">pc_df</span></div>
 
@@ -230,7 +233,8 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal components&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Amount of explanatory variance&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Explanatory variance of the principal components from the features</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Explanatory variance of the principal components &quot;</span>
+              <span class="s2">&quot;from the features</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_comp</span> <span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">i</span> <span class="o">*</span> <span class="mf">0.1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">((</span><span class="n">n_comp</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))])</span>
@@ -238,10 +242,19 @@
     <span class="k">return</span> <span class="n">fig</span></div>
 
 
-<div class="viewcode-block" id="run_all_below"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.run_all_below">[docs]</a><span class="k">def</span> <span class="nf">run_all_below</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Run all cells below the current cell form a Jupyter notebook</span>
+<div class="viewcode-block" id="run_all_below"><a class="viewcode-back" href="../../api.html#leaf_cc.data_visualisation.run_all_below">[docs]</a><span class="k">def</span> <span class="nf">run_all_below</span><span class="p">(</span><span class="n">ev</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Run all cells below the current cell form a Jupyter notebook,</span>
 <span class="sd">    without executing the cell that has this button from where this</span>
 <span class="sd">    function is called.</span>
+
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+
+<span class="sd">    ev :</span>
+<span class="sd">        unused pseudo variable which is needed to pass this function</span>
+<span class="sd">        later</span>
+
 
 <span class="sd">    Returns</span>
 <span class="sd">    =======</span>
@@ -251,7 +264,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">Idp</span><span class="o">.</span><span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span>
-        <span class="s1">&#39;IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, IPython.notebook.ncells())&#39;</span><span class="p">))</span>
+        <span class="s1">&#39;IPython.notebook.execute_cell_range(IPython.notebook.get_selected_index()+1, &#39;</span>
+        <span class="s1">&#39;IPython.notebook.ncells())&#39;</span><span class="p">))</span>
     <span class="k">return</span> <span class="kc">None</span></div>
 
 
