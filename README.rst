@@ -1,5 +1,5 @@
-.. image:: https://coveralls.io/repos/github/niedeado/M05_ProjectReproducibility/badge.svg?branch=main&service=github
-   :target: https://coveralls.io/github/niedeado/M05_ProjectReproducibility?branch=main&service=github
+.. image:: https://coveralls.io/repos/github/niedeado/M05_ProjectReproducibility/badge.svg?branch=master&service=github
+   :target: https://coveralls.io/github/niedeado/M05_ProjectReproducibility?branch=master&service=github
 .. image:: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml/badge.svg?
    :target: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml?branch=main
 .. image:: https://img.shields.io/badge/docs-latest-orange.svg
