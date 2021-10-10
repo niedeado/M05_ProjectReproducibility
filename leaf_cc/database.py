@@ -30,8 +30,9 @@ def load():
         DATAFILE = pkg_resources.resource_filename(__name__, "data/data_Sha_64.txt")
         dataset = pd.read_csv(DATAFILE, header=None)
 
-    dataset.columns = ["species"] + \
-                      ["shape_" + str(i) for i in range(dataset.shape[1] - 1)]
+    dataset.columns = ["species"] + [
+        "shape_" + str(i) for i in range(dataset.shape[1] - 1)
+    ]
     return dataset
 
 
@@ -116,8 +117,7 @@ def split_data(X, y, test_size=TEST_SIZE, random_state=SEED):
 
     """
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y,
-                                                        test_size=test_size,
-                                                        stratify=y,
-                                                        random_state=random_state)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=test_size, stratify=y, random_state=random_state
+    )
     return X_train, X_test, y_train, y_test

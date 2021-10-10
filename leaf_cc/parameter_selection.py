@@ -12,6 +12,7 @@ N_SPLITS = 5
 VAL_SIZE = 0.1
 SEED = 0
 
+
 def selection_criteria(parameters, validation_accs):
     """Returns hyperparameters having the best validation accuracy
 
@@ -76,24 +77,31 @@ def hyperparam_tuning(X_train, y_train, pickle_dump=False):
             for max_feat in MAX_FEATURES:
 
                 t = time.time()
-                params = {"n_estimators": n_est,
-                          "max_depth": max_depth,
-                          "max_features": max_feat}
+                params = {
+                    "n_estimators": n_est,
+                    "max_depth": max_depth,
+                    "max_features": max_feat,
+                }
                 print(params)
                 parameters.append(params)
 
                 # generates n_splits preserving the percentage of samples for each class
-                sss = StratifiedShuffleSplit(n_splits=N_SPLITS,
-                                             test_size=VAL_SIZE,
-                                             random_state=SEED)
+                sss = StratifiedShuffleSplit(
+                    n_splits=N_SPLITS, test_size=VAL_SIZE, random_state=SEED
+                )
 
                 cv_scores = []
                 for train_index_cv, test_index_cv in sss.split(X_train, y_train):
-                    X_train_cv, X_test_cv = X_train[train_index_cv], X_train[test_index_cv]
-                    y_train_cv, y_test_cv = y_train[train_index_cv], y_train[test_index_cv]
+                    X_train_cv, X_test_cv = (
+                        X_train[train_index_cv],
+                        X_train[test_index_cv],
+                    )
+                    y_train_cv, y_test_cv = (
+                        y_train[train_index_cv],
+                        y_train[test_index_cv],
+                    )
 
-                    rf_clf = RandomForestClassifier(**params,
-                                                    random_state=SEED)
+                    rf_clf = RandomForestClassifier(**params, random_state=SEED)
 
                     rf_clf.fit(X_train_cv, y_train_cv)
                     cv_scores.append(rf_clf.score(X_test_cv, y_test_cv))
