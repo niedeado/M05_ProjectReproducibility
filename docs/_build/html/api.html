@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> leaf_cc
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -379,16 +379,20 @@ at least 19.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="leaf_cc.data_visualisation.run_all_below">
-<span class="sig-prename descclassname"><span class="pre">leaf_cc.data_visualisation.</span></span><span class="sig-name descname"><span class="pre">run_all_below</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/data_visualisation.html#run_all_below"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.data_visualisation.run_all_below" title="Permalink to this definition"></a></dt>
-<dd><p>Run all cells below the current cell form a Jupyter notebook
+<span class="sig-prename descclassname"><span class="pre">leaf_cc.data_visualisation.</span></span><span class="sig-name descname"><span class="pre">run_all_below</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/data_visualisation.html#run_all_below"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.data_visualisation.run_all_below" title="Permalink to this definition"></a></dt>
+<dd><p>Run all cells below the current cell form a Jupyter notebook,
 without executing the cell that has this button from where this
 function is called.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>ev</strong> – unused pseudo variable which is needed to pass this function
+later</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>None</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -418,9 +422,9 @@ Jupyter notebook file will be executed.</p></li>
 <dl class="py function">
 <dt class="sig sig-object py" id="leaf_cc.data_visualisation.run_pca">
 <span class="sig-prename descclassname"><span class="pre">leaf_cc.data_visualisation.</span></span><span class="sig-name descname"><span class="pre">run_pca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_train</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">std_widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_widget</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_inv_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/leaf_cc/data_visualisation.html#run_pca"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#leaf_cc.data_visualisation.run_pca" title="Permalink to this definition"></a></dt>
-<dd><p>Runs PCA on the passed data based on the defined parameters and returns a pandas Dataframe.
-Consider the PCA is always fitted on the whole dataset X_train and the returned Dataframe is
-dependable on the values from the x_widget object.</p>
+<dd><p>Runs PCA on the passed data based on the defined parameters and returns a
+pandas Dataframe. Consider the PCA is always fitted on the whole dataset X_train
+and the returned Dataframe isdependable on the values from the x_widget object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

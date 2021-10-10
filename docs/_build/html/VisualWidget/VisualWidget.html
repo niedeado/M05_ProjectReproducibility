@@ -31,7 +31,7 @@
             <a href="../index.html" class="icon icon-home"> leaf_cc
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -104,16 +104,7 @@ the explonatory variance of the first 19 components after running PCA.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_widget</span><span class="p">,</span> <span class="n">mean_widget</span><span class="p">,</span> <span class="n">std_widget</span><span class="p">,</span> <span class="n">button_widget</span><span class="o">=</span> <span class="n">dv</span><span class="o">.</span><span class="n">load_widgets</span><span class="p">()</span>
 </pre></div>
 </div>
-<pre class="literal-block">SelectMultiple(description='Speciesn', index=(40,), options=('Acer Campestre', 'Acer Capillipes', 'Acer Circi…</pre>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Scale by Mean&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Checkbox</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Scale by Std&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>HBox(children=(Button(button_style=&#39;primary&#39;, description=&#39;Update&#39;, style=ButtonStyle(), tooltip=&#39;Update&#39;),), …
-</pre></div>
-</div>
+<img alt="../_images/output_3_1.png" src="../_images/output_3_1.png" />
 <p>Show the chosen plant species in the 2D PCA domain.</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">dv</span><span class="o">.</span><span class="n">run_pca</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">mean_widget</span><span class="p">,</span> <span class="n">std_widget</span><span class="p">,</span> <span class="n">x_widget</span><span class="p">)</span>
 <span class="n">rfig_pca</span> <span class="o">=</span> <span class="n">dv</span><span class="o">.</span><span class="n">plot_pca</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>

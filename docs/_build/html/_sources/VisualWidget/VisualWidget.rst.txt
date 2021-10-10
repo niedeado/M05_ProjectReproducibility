@@ -31,28 +31,7 @@ the explonatory variance of the first 19 components after running PCA.
 
 
 
-.. parsed-literal::
-
-    SelectMultiple(description='Species\n', index=(40,), options=('Acer Campestre', 'Acer Capillipes', 'Acer Circi…
-
-
-
-.. parsed-literal::
-
-    Checkbox(value=True, description='Scale by Mean')
-
-
-
-.. parsed-literal::
-
-    Checkbox(value=True, description='Scale by Std')
-
-
-
-.. parsed-literal::
-
-    HBox(children=(Button(button_style='primary', description='Update', style=ButtonStyle(), tooltip='Update'),), …
-
+.. image:: output_3_1.png
 
 Show the chosen plant species in the 2D PCA domain.
 

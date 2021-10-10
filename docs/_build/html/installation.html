@@ -31,7 +31,7 @@
             <a href="index.html" class="icon icon-home"> leaf_cc
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -42,7 +42,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-miniconda">Using Miniconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pip">Using pip</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">Licensing</a></li>
@@ -73,11 +77,35 @@
            <div itemprop="articleBody">
              
   <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
-<p>Use pip:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@main
+<span id="activities-installation"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<p>It is possible to install the project and its related package with pip or with conda in a
+virtual environment. Both options are shown below. If it is intended to also use the
+provided visualisation tool in a jupyter notebook, it is recommended to use the option by using
+conda environment. So it is possible to access the notebook file outside of the package.</p>
+<p>To ensure everything is set up correctly, please run after the installation in both cases
+the provided test shown in the code blocks below.</p>
+<section id="using-miniconda">
+<h2>Using Miniconda<a class="headerlink" href="#using-miniconda" title="Permalink to this headline"></a></h2>
+<p>The package depends on multiple packages to run properly. Please install the
+version of these packages by creating the environment with the help of the packages listed
+in the requirements_pkg.txt file.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/niedeado/M05_ProjectReproducibility.git leaf_src
+$ <span class="nb">cd</span> leaf_src/
+$ conda create --name leaf --file requirements_pkg.txt
+$ conda activate leaf
+<span class="o">(</span>leaf<span class="o">)</span> $ pip install -e .
+<span class="o">(</span>leaf<span class="o">)</span> $ leaf_cc-run_test
 </pre></div>
 </div>
+</section>
+<section id="using-pip">
+<h2>Using pip<a class="headerlink" href="#using-pip" title="Permalink to this headline"></a></h2>
+<p>It is also possible to install the package directly with pip, as shown below.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@main
+$ leaf_cc-run_test
+</pre></div>
+</div>
+</section>
 </section>
 
 

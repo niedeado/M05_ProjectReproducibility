@@ -36,19 +36,6 @@ Installation & Instructions
 
 The installation and usage instructions can be accessed `here <https://niedeado.github.io/M05_ProjectReproducibility/>`__.
 
-The Project and the corresponding model can be installed by pip as mentioned below.
-Please run after the installation the provided test, to ensure everything is set up
-correclty.
-
-
-.. code-block:: rst
-   
-   $ pip install git+https://github.com/niedeado/M05_ProjectReproducibility.git@main
-   
-   $ leaf_cc-run_test
-   
-   $ leaf_cc-run_model
-
 
 ----------
 References
