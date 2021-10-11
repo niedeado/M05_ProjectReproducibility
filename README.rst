@@ -1,4 +1,4 @@
-.. image:: https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_81.svg
+.. image:: https://coveralls.io/repos/github/niedeado/M05_ProjectReproducibility/badge.svg?branch=main&&kill_cache=1&service=github
    :target: https://coveralls.io/github/niedeado/M05_ProjectReproducibility?branch=main&service=github
 .. image:: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml/badge.svg?
    :target: https://github.com/niedeado/M05_ProjectReproducibility/actions/workflows/ci_testing.yml?branch=main
