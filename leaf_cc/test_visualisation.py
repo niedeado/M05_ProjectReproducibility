@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import ipywidgets as widgets
 from . import data_visualisation
+from . import parameter_selection
 import string
 
 
@@ -115,3 +116,19 @@ def test_plot_pca(mock_plt):
     _ = data_visualisation.plot_pca(df)
     assert mock_plt.ticklabel_format.assert_called_once
     assert mock_plt.show.called
+
+
+@patch("%s.parameter_selection.pickle" % __name__)
+def test_hyperparam_tuning(mock_pickle):
+
+    df = pd.DataFrame(np.random.randint(0, 100, size=(100, 4)), columns=list("ABCD"))
+    cols = ["PC1", "PC2", "PC3", "PC4"]
+    df.columns = cols + df.columns.tolist()[len(cols) :]
+    X_train = df.values
+
+    y_train = np.random.choice([0, 1], size=len(df))
+
+    parameter_selection.hyperparam_tuning(
+            X_train, y_train, True
+        )
+    assert mock_pickle.dump.called
